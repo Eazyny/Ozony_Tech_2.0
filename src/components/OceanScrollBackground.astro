@@ -7,8 +7,7 @@ import HorizontalStackSection from "./horizontal-stack-section.astro";
 
 <header class="site-header">
   <a class="brand" href="#s0" aria-label="Ozony Tech home">
-    <span class="brand-mark">OZ</span>
-    <span class="brand-name">Ozony Tech</span>
+    <img class="brand-logo" src="/images/ozony-logo.svg" alt="Ozony Tech" />
   </a>
 
   <nav class="nav-links" aria-label="Primary navigation">
@@ -370,6 +369,12 @@ import HorizontalStackSection from "./horizontal-stack-section.astro";
 
   .brand-name {
     color: color-mix(in srgb, var(--fg) 78%, transparent);
+  }
+
+  .brand-logo {
+    display: block;
+    width: clamp(3rem, 4vw, 8rem);
+    height: auto;
   }
 
   .nav-links {
