@@ -1,5 +1,185 @@
 ---
 import OceanScrollBackground from "../components/OceanScrollBackground.astro";
+
+const siteTitle =
+  "Ozony Tech | Business IT, Network Setup, Wi-Fi, Firewalls & Websites";
+
+const siteDescription =
+  "Ozony Tech designs secure business Wi-Fi, firewall setups, segmented networks, IT systems, and modern websites for small businesses in NYC, NJ, and nearby areas.";
+
+const siteUrl = "https://ozony.tech";
+const ogImage = `${siteUrl}/images/ozony-logo.svg`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Ozony Tech",
+      url: siteUrl,
+      logo: ogImage,
+      email: "contact@ozony.tech",
+      description:
+        "Ozony Tech provides business IT, network setup, secure Wi-Fi, firewall configuration, network segmentation, and modern website services for small businesses.",
+      areaServed: [
+        {
+          "@type": "Place",
+          name: "New York City"
+        },
+        {
+          "@type": "Place",
+          name: "New Jersey"
+        },
+        {
+          "@type": "Place",
+          name: "Nearby small business areas"
+        }
+      ],
+      knowsAbout: [
+        "Business IT",
+        "Network setup",
+        "Business Wi-Fi",
+        "Firewall setup",
+        "Network segmentation",
+        "VLAN planning",
+        "Small business IT support",
+        "Website design",
+        "Technical SEO"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "Ozony Tech",
+      url: siteUrl,
+      publisher: {
+        "@id": `${siteUrl}/#organization`
+      },
+      description: siteDescription
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}/#professionalservice`,
+      name: "Ozony Tech",
+      url: siteUrl,
+      image: ogImage,
+      email: "contact@ozony.tech",
+      description: siteDescription,
+      provider: {
+        "@id": `${siteUrl}/#organization`
+      },
+      areaServed: [
+        {
+          "@type": "Place",
+          name: "New York City"
+        },
+        {
+          "@type": "Place",
+          name: "New Jersey"
+        }
+      ],
+      serviceType: [
+        "Business IT services",
+        "Network setup",
+        "Business Wi-Fi installation",
+        "Firewall setup",
+        "Network segmentation",
+        "Website design"
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Ozony Tech Services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Business Wi-Fi Setup",
+              description:
+                "Reliable staff and guest Wi-Fi planning, access point setup, SSID structure, and coverage improvements for small businesses."
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Firewall Setup",
+              description:
+                "Firewall configuration, safer network boundaries, DNS filtering, and access rules for small business environments."
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Network Segmentation",
+              description:
+                "VLAN planning and segmented network design for staff, guest, POS, cameras, IoT, servers, and management devices."
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Small Business IT Support",
+              description:
+                "Practical IT support, device setup, documentation, Microsoft 365 basics, and business technology cleanup."
+            }
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Website Design",
+              description:
+                "Modern websites, service pages, SEO structure, and digital presence for small businesses."
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
 ---
 
-<OceanScrollBackground />
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{siteTitle}</title>
+    <meta name="description" content={siteDescription} />
+    <meta
+      name="keywords"
+      content="Ozony Tech, business IT, network setup NYC, business Wi-Fi, firewall setup, small business IT support, VLAN setup, network segmentation, website design, IT services NYC, IT services NJ"
+    />
+
+    <link rel="canonical" href={siteUrl} />
+
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#00c8ff" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ozony Tech" />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="Ozony Tech logo" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={siteDescription} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/images/ozony-logo.svg" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+  </head>
+
+  <body>
+    <OceanScrollBackground />
+  </body>
+</html>
