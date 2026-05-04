@@ -82,11 +82,24 @@
     </div>
 
     <div class="oz-footer-right">
-      <div class="oz-logo-stage oz-glass-card">
-        <div class="oz-logo-placeholder">
-          <span>3D LOGO</span>
+        <div class="oz-logo-stage oz-glass-card">
+            <model-viewer
+            class="oz-logo-viewer"
+            src="/models/oz-logo.glb"
+            alt="Ozony Tech 3D logo"
+            auto-rotate
+            auto-rotate-delay="0"
+            rotation-per-second="18deg"
+            camera-orbit="0deg 75deg 105%"
+            interaction-prompt="none"
+            shadow-intensity="0"
+            exposure="1"
+            environment-image="neutral"
+            disable-zoom
+            disable-pan
+            touch-action="none"
+            ></model-viewer>
         </div>
-      </div>
     </div>
 
     <div class="oz-footer-bottom">
@@ -162,10 +175,14 @@
   }
 </script>
 
+<script is:inline type="module">
+  import "https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js";
+</script>
+
 <style>
   section#s4.oz-footer-section {
     width: 100%;
-    min-height: 100vh;
+    min-height: auto;
     display: block;
     padding: 0;
   }
@@ -173,7 +190,7 @@
   .oz-command-footer {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: clamp(34rem, 62vh, 44rem);
     padding: clamp(1.5rem, 2vw, 2rem);
     display: grid;
     grid-template-columns: minmax(0, 1.45fr) minmax(24rem, 0.9fr);
@@ -467,9 +484,9 @@
   }
 
   .oz-logo-stage {
-    width: min(35rem, 100%);
-    height: min(35rem, 72vh);
-    min-height: 24rem;
+    width: min(30rem, 100%);
+    height: min(30rem, 52vh);
+    min-height: 20rem;
     display: grid;
     place-items: center;
     border-color: transparent;
@@ -477,6 +494,13 @@
       radial-gradient(circle at center, rgba(255, 255, 255, 0.07), transparent 58%),
       color-mix(in srgb, var(--card-bg) 28%, transparent);
   }
+
+  .oz-logo-viewer {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      --poster-color: transparent;
+    }
 
   .oz-logo-placeholder {
     width: min(26rem, 85%);
