@@ -1,7 +1,11 @@
 ---
 import SiteFooter from "./site-footer.astro";
 import HorizontalStackSection from "./horizontal-stack-section.astro";
+import IndustriesSection from "./industries-section.astro";
+import TrustSection from "./trust-section.astro";
+import PackagesCtaSection from "./packages-cta-section.astro";
 ---
+
 
 <canvas id="webgl_canvas"></canvas>
 
@@ -17,7 +21,7 @@ import HorizontalStackSection from "./horizontal-stack-section.astro";
     <a href="#s4">contact</a>
   </nav>
 
-  <a class="header-cta" href="mailto:contact@ozony.tech">get started</a>
+  <a class="header-cta" href="mailto:contact@ozony.tech">Get Started</a>
 </header>
 
 <div id="hud">
@@ -75,14 +79,14 @@ import HorizontalStackSection from "./horizontal-stack-section.astro";
 
         <div class="hero-actions">
           <a class="cta" href="mailto:contact@ozony.tech">
-            book consultation
+            Book a Consultation
             <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M1 6h10M6 1l5 5-5 5" />
             </svg>
           </a>
 
           <a class="ghost-link" href="#s1">
-            [ explore services ]
+            Explore Services
           </a>
         </div>
       </div>
@@ -179,6 +183,8 @@ import HorizontalStackSection from "./horizontal-stack-section.astro";
     </div>
   </section>
 
+  <IndustriesSection />
+
   <section id="s3" class="process-section">
     <div class="section-shell">
       <div class="section-heading process-heading">
@@ -220,6 +226,10 @@ import HorizontalStackSection from "./horizontal-stack-section.astro";
       </div>
     </div>
   </section>
+
+  <TrustSection />
+
+  <PackagesCtaSection />
 
   <SiteFooter />
 </main>

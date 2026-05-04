@@ -1,0 +1,351 @@
+<div id="packages" class="packages-section">
+  <div class="packages-shell">
+    <div class="packages-heading">
+      <div class="packages-tag">Service paths</div>
+
+      <h2>
+        Start with the system your business needs most.
+      </h2>
+
+      <p>
+        Whether the first priority is Wi-Fi, a secure firewall, a segmented
+        network, a better website, or a full cleanup, Ozony Tech can shape the
+        project around the business instead of forcing a one-size-fits-all setup.
+      </p>
+    </div>
+
+    <div class="packages-grid">
+      <article class="package-card">
+        <div class="package-top">
+          <span>01</span>
+          <p>Starter</p>
+        </div>
+
+        <h3>Clean Setup</h3>
+
+        <p>
+          Best for small spaces that need reliable Wi-Fi, basic network cleanup,
+          website improvements, or a more professional tech foundation.
+        </p>
+
+        <ul>
+          <li>Business Wi-Fi planning</li>
+          <li>Basic firewall setup</li>
+          <li>Small network cleanup</li>
+          <li>Website or service-page review</li>
+        </ul>
+      </article>
+
+      <article class="package-card package-card-featured">
+        <div class="package-top">
+          <span>02</span>
+          <p>Growth</p>
+        </div>
+
+        <h3>Managed Build</h3>
+
+        <p>
+          Best for growing businesses that need staff/guest separation, firewall
+          rules, better documentation, and a stronger website presence.
+        </p>
+
+        <ul>
+          <li>Segmented Wi-Fi and VLAN planning</li>
+          <li>Firewall rules and safer boundaries</li>
+          <li>Device and access structure</li>
+          <li>Website and SEO structure</li>
+        </ul>
+      </article>
+
+      <article class="package-card">
+        <div class="package-top">
+          <span>03</span>
+          <p>Complete</p>
+        </div>
+
+        <h3>Full System</h3>
+
+        <p>
+          Best for businesses that want a serious end-to-end setup across
+          networking, security, documentation, support, and digital presence.
+        </p>
+
+        <ul>
+          <li>Network design and deployment</li>
+          <li>Firewall and segmentation strategy</li>
+          <li>Documentation and handoff</li>
+          <li>Website, service pages, and support plan</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="packages-cta">
+      <div>
+        <p class="packages-cta-kicker">Ready to clean up your business technology?</p>
+        <h3>
+          Let's design the network, website, and IT system around how your
+          business actually works.
+        </h3>
+      </div>
+
+      <a href="mailto:contact@ozony.tech">
+        book consultation
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M1 6h10M6 1l5 5-5 5" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .packages-section {
+    position: relative;
+    z-index: 4;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: clamp(6rem, 10vw, 10rem) clamp(1.25rem, 6vw, 6rem);
+  }
+
+  .packages-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(
+        circle at 78% 18%,
+        color-mix(in srgb, var(--accent) 12%, transparent),
+        transparent 34%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--card-bg) 18%, transparent),
+        transparent 42%,
+        color-mix(in srgb, var(--card-bg) 24%, transparent)
+      );
+    pointer-events: none;
+  }
+
+  .packages-shell {
+    width: min(118rem, 100%);
+    margin-inline: auto;
+  }
+
+  .packages-heading {
+    max-width: 76rem;
+    margin-bottom: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .packages-tag {
+    margin-bottom: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: clamp(0.58rem, 0.78vw, 0.72rem);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .packages-heading h2 {
+    max-width: 13ch;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(3.1rem, 8vw, 9rem);
+    font-weight: 400;
+    line-height: 0.86;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .packages-heading p {
+    max-width: 44rem;
+    margin-top: 1.35rem;
+    color: color-mix(in srgb, var(--fg) 62%, transparent);
+    font-family: var(--font-mono);
+    font-size: clamp(0.78rem, 1vw, 0.95rem);
+    line-height: 1.8;
+  }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--hairline);
+    background: color-mix(in srgb, var(--fg) 22%, transparent);
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 22%, transparent);
+  }
+
+  .package-card {
+    min-height: 34rem;
+    padding: clamp(1.35rem, 2.7vw, 2.25rem);
+    background: color-mix(in srgb, var(--card-bg) 82%, transparent);
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+  }
+
+  .package-card-featured {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--accent) 13%, transparent),
+        color-mix(in srgb, var(--card-bg) 88%, transparent)
+      );
+  }
+
+  .package-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: clamp(5rem, 8vw, 8rem);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .package-top span {
+    color: var(--accent);
+  }
+
+  .package-top p {
+    color: color-mix(in srgb, var(--fg) 62%, transparent);
+  }
+
+  .package-card h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 4.2rem);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .package-card > p {
+    max-width: 32rem;
+    margin-top: 1rem;
+    color: color-mix(in srgb, var(--fg) 64%, transparent);
+    font-family: var(--font-mono);
+    font-size: clamp(0.78rem, 1vw, 0.95rem);
+    line-height: 1.75;
+  }
+
+  .package-card ul {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .package-card li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: color-mix(in srgb, var(--fg) 72%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    line-height: 1.6;
+  }
+
+  .package-card li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 0.35rem;
+    height: 0.35rem;
+    background: var(--accent);
+  }
+
+  .packages-cta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: clamp(2rem, 6vw, 6rem);
+    margin-top: clamp(2rem, 5vw, 4rem);
+    padding-top: clamp(2rem, 5vw, 4rem);
+    border-top: var(--hairline) solid color-mix(in srgb, var(--fg) 24%, transparent);
+  }
+
+  .packages-cta-kicker {
+    margin-bottom: 0.9rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .packages-cta h3 {
+    max-width: 60rem;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 6rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .packages-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    padding: 0 1.2rem;
+    border: var(--hairline) solid var(--accent);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .packages-cta a:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  .packages-cta svg {
+    width: 0.6875rem;
+    height: 0.6875rem;
+  }
+
+  @media (width <= 72em) {
+    .packages-grid,
+    .packages-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .package-card {
+      min-height: 28rem;
+    }
+
+    .package-top {
+      margin-bottom: 5rem;
+    }
+
+    .packages-cta a {
+      width: fit-content;
+    }
+  }
+
+  @media (width <= 37.5em) {
+    .packages-section {
+      padding: 5.5rem 1.25rem;
+    }
+
+    .packages-heading h2,
+    .packages-cta h3 {
+      font-size: clamp(3rem, 16vw, 5.25rem);
+    }
+  }
+</style>

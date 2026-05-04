@@ -1,0 +1,247 @@
+<div id="trust" class="trust-section">
+  <div class="trust-shell">
+    <div class="trust-heading">
+      <div class="trust-tag">Why businesses work with Ozony Tech</div>
+
+      <h2>
+        Built by someone who understands both the network and the business.
+      </h2>
+
+      <p>
+        Ozony Tech is built around practical IT, secure networking, clean
+        documentation, and modern digital systems. The goal is simple: help
+        small businesses get technology that is easier to manage, safer to run,
+        and better aligned with how they actually work.
+      </p>
+    </div>
+
+    <div class="trust-grid">
+      <article class="trust-card trust-card-large">
+        <span>01</span>
+        <h3>Network-first thinking</h3>
+        <p>
+          Structured VLANs, firewall rules, access control, Wi-Fi planning, and
+          cleaner network layouts built with long-term maintainability in mind.
+        </p>
+      </article>
+
+      <article class="trust-card">
+        <span>02</span>
+        <h3>Small-business practical</h3>
+        <p>
+          Built for real budgets, real spaces, real devices, and the everyday
+          problems small businesses actually deal with.
+        </p>
+      </article>
+
+      <article class="trust-card">
+        <span>03</span>
+        <h3>Web + IT together</h3>
+        <p>
+          Your network, website, SEO structure, service pages, and online
+          presence can work together instead of feeling like separate projects.
+        </p>
+      </article>
+
+      <article class="trust-card">
+        <span>04</span>
+        <h3>Security-minded setup</h3>
+        <p>
+          Guest Wi-Fi, IoT, cameras, POS, staff devices, and admin access should
+          not all live in one messy zone.
+        </p>
+      </article>
+
+      <article class="trust-card">
+        <span>05</span>
+        <h3>Documentation included</h3>
+        <p>
+          Network maps, admin notes, IP plans, device lists, access details, and
+          handoff notes so the system is not a mystery.
+        </p>
+      </article>
+
+      <article class="trust-card trust-card-accent">
+        <span>06</span>
+        <h3>Local support mindset</h3>
+        <p>
+          Built for NYC, NJ, and nearby small businesses that need responsive,
+          practical help without enterprise-level confusion.
+        </p>
+      </article>
+    </div>
+  </div>
+</div>
+
+<style>
+  .trust-section {
+    position: relative;
+    z-index: 4;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: clamp(6rem, 10vw, 10rem) clamp(1.25rem, 6vw, 6rem);
+  }
+
+  .trust-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(
+        circle at 12% 78%,
+        color-mix(in srgb, var(--accent) 12%, transparent),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at 84% 20%,
+        color-mix(in srgb, var(--fg) 7%, transparent),
+        transparent 30%
+      ),
+      linear-gradient(
+        180deg,
+        transparent,
+        color-mix(in srgb, var(--card-bg) 22%, transparent),
+        transparent
+      );
+    pointer-events: none;
+  }
+
+  .trust-shell {
+    width: min(118rem, 100%);
+    margin-inline: auto;
+  }
+
+  .trust-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 32rem);
+    gap: clamp(2rem, 8vw, 8rem);
+    align-items: end;
+    margin-bottom: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .trust-tag {
+    grid-column: 1 / -1;
+    margin-bottom: -0.5rem;
+    font-family: var(--font-mono);
+    font-size: clamp(0.58rem, 0.78vw, 0.72rem);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .trust-heading h2 {
+    max-width: 13ch;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(3.1rem, 8vw, 9rem);
+    font-weight: 400;
+    line-height: 0.86;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .trust-heading p {
+    margin: 0;
+    color: color-mix(in srgb, var(--fg) 62%, transparent);
+    font-family: var(--font-mono);
+    font-size: clamp(0.78rem, 1vw, 0.95rem);
+    line-height: 1.8;
+  }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: var(--hairline) solid color-mix(in srgb, var(--fg) 22%, transparent);
+    border-left: var(--hairline) solid color-mix(in srgb, var(--fg) 22%, transparent);
+  }
+
+  .trust-card {
+    min-height: 23rem;
+    padding: clamp(1.35rem, 2.6vw, 2.25rem);
+    border-right: var(--hairline) solid color-mix(in srgb, var(--fg) 22%, transparent);
+    border-bottom: var(--hairline) solid color-mix(in srgb, var(--fg) 22%, transparent);
+    background: color-mix(in srgb, var(--card-bg) 78%, transparent);
+    backdrop-filter: blur(9px) saturate(115%);
+    -webkit-backdrop-filter: blur(9px) saturate(115%);
+  }
+
+  .trust-card-large {
+    grid-column: span 2;
+  }
+
+  .trust-card-accent {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--accent) 13%, transparent),
+        color-mix(in srgb, var(--card-bg) 86%, transparent)
+      );
+  }
+
+  .trust-card span {
+    display: block;
+    margin-bottom: clamp(4rem, 7vw, 7rem);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+  }
+
+  .trust-card h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.1vw, 3.8rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .trust-card p {
+    max-width: 34rem;
+    margin-top: 0.85rem;
+    color: color-mix(in srgb, var(--fg) 62%, transparent);
+    font-family: var(--font-mono);
+    font-size: clamp(0.78rem, 1vw, 0.95rem);
+    line-height: 1.75;
+  }
+
+  @media (width <= 72em) {
+    .trust-heading {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .trust-tag {
+      margin-bottom: 0;
+    }
+
+    .trust-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .trust-card,
+    .trust-card-large {
+      grid-column: auto;
+      min-height: 18rem;
+    }
+
+    .trust-card span {
+      margin-bottom: 4rem;
+    }
+  }
+
+  @media (width <= 37.5em) {
+    .trust-section {
+      padding: 5.5rem 1.25rem;
+    }
+
+    .trust-heading h2 {
+      font-size: clamp(3rem, 16vw, 5.25rem);
+    }
+  }
+</style>

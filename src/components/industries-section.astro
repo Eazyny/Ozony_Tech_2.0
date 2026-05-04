@@ -1,0 +1,214 @@
+<div id="industries" class="industries-section">
+  <div class="industries-shell">
+    <div class="industries-heading">
+      <div class="industries-tag">Who we help</div>
+
+      <h2>
+        Built for small businesses that rely on clean systems.
+      </h2>
+
+      <p>
+        Ozony Tech helps local businesses clean up the technology they depend on
+        every day — from Wi-Fi and firewalls to websites, devices, and digital
+        workflows.
+      </p>
+    </div>
+
+    <div class="industries-grid">
+      <article class="industry-card">
+        <span>01</span>
+        <h3>Barbershops & Salons</h3>
+        <p>
+          Reliable Wi-Fi, guest access, booking systems, cameras, and POS
+          separation for high-traffic service businesses.
+        </p>
+      </article>
+
+      <article class="industry-card">
+        <span>02</span>
+        <h3>Restaurants & Cafés</h3>
+        <p>
+          Guest Wi-Fi, staff devices, POS networks, kitchen devices, cameras,
+          and uptime-focused layouts.
+        </p>
+      </article>
+
+      <article class="industry-card">
+        <span>03</span>
+        <h3>Small Offices</h3>
+        <p>
+          Secure workstations, file access, Microsoft 365 basics, printers,
+          firewall rules, and clean documentation.
+        </p>
+      </article>
+
+      <article class="industry-card">
+        <span>04</span>
+        <h3>Retail Shops</h3>
+        <p>
+          POS separation, cameras, staff devices, guest Wi-Fi, inventory
+          systems, and safer device zones.
+        </p>
+      </article>
+
+      <article class="industry-card">
+        <span>05</span>
+        <h3>Medical & Wellness</h3>
+        <p>
+          Structured Wi-Fi, safer device separation, admin systems,
+          patient-facing digital presence, and documented setup.
+        </p>
+      </article>
+
+      <article class="industry-card">
+        <span>06</span>
+        <h3>Home Offices & Creators</h3>
+        <p>
+          Fast Wi-Fi, clean workstations, secure access, content workflows,
+          websites, and remote-friendly systems.
+        </p>
+      </article>
+    </div>
+  </div>
+</div>
+
+<style>
+  .industries-section {
+    position: relative;
+    z-index: 4;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: clamp(6rem, 10vw, 10rem) clamp(1.25rem, 6vw, 6rem);
+  }
+
+  .industries-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(
+        circle at 18% 24%,
+        color-mix(in srgb, var(--accent) 11%, transparent),
+        transparent 32%
+      ),
+      linear-gradient(
+        180deg,
+        transparent,
+        color-mix(in srgb, var(--card-bg) 22%, transparent),
+        transparent
+      );
+    pointer-events: none;
+  }
+
+  .industries-shell {
+    width: min(118rem, 100%);
+    margin-inline: auto;
+  }
+
+  .industries-heading {
+    max-width: 76rem;
+    margin-bottom: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .industries-tag {
+    margin-bottom: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: clamp(0.58rem, 0.78vw, 0.72rem);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .industries-heading h2 {
+    max-width: 13ch;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(3.1rem, 8vw, 9rem);
+    font-weight: 400;
+    line-height: 0.86;
+    letter-spacing: 0.015em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .industries-heading p {
+    max-width: 42rem;
+    margin-top: 1.35rem;
+    color: color-mix(in srgb, var(--fg) 62%, transparent);
+    font-family: var(--font-mono);
+    font-size: clamp(0.78rem, 1vw, 0.95rem);
+    line-height: 1.8;
+  }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: var(--hairline) solid color-mix(in srgb, var(--fg) 22%, transparent);
+    border-left: var(--hairline) solid color-mix(in srgb, var(--fg) 22%, transparent);
+  }
+
+  .industry-card {
+    min-height: 21rem;
+    padding: clamp(1.35rem, 2.7vw, 2.25rem);
+    border-right: var(--hairline) solid color-mix(in srgb, var(--fg) 22%, transparent);
+    border-bottom: var(--hairline) solid color-mix(in srgb, var(--fg) 22%, transparent);
+    background: color-mix(in srgb, var(--card-bg) 78%, transparent);
+    backdrop-filter: blur(9px) saturate(115%);
+    -webkit-backdrop-filter: blur(9px) saturate(115%);
+  }
+
+  .industry-card span {
+    display: block;
+    margin-bottom: clamp(4rem, 7vw, 7rem);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+  }
+
+  .industry-card h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.2vw, 3.8rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .industry-card p {
+    max-width: 32rem;
+    margin-top: 0.85rem;
+    color: color-mix(in srgb, var(--fg) 62%, transparent);
+    font-family: var(--font-mono);
+    font-size: clamp(0.78rem, 1vw, 0.95rem);
+    line-height: 1.75;
+  }
+
+  @media (width <= 72em) {
+    .industries-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .industry-card {
+      min-height: 18rem;
+    }
+
+    .industry-card span {
+      margin-bottom: 4rem;
+    }
+  }
+
+  @media (width <= 37.5em) {
+    .industries-section {
+      padding: 5.5rem 1.25rem;
+    }
+
+    .industries-heading h2 {
+      font-size: clamp(3rem, 16vw, 5.25rem);
+    }
+  }
+</style>
