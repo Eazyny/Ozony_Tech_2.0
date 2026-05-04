@@ -1,0 +1,268 @@
+<section id="s1" class="horizontal-stack-section" data-horizontal-section>
+  <div class="horizontal-copy">
+    <p class="section-kicker">SYSTEM LAYERS</p>
+    <h2>
+      One clean stack for the network, security, Wi-Fi, and digital systems.
+    </h2>
+  </div>
+
+  <div class="horizontal-viewport">
+    <div class="horizontal-track" data-horizontal-track>
+      <article class="stack-panel stack-panel-lead">
+        <span class="panel-number">01</span>
+        <p class="panel-eyebrow">Foundation</p>
+        <h3>Network Design</h3>
+        <p>
+          Clean topology, VLAN planning, switch layout, IP structure, and
+          documentation before anything gets installed.
+        </p>
+      </article>
+
+      <article class="stack-panel">
+        <span class="panel-number">02</span>
+        <p class="panel-eyebrow">Wireless</p>
+        <h3>Business Wi-Fi</h3>
+        <p>
+          Reliable coverage for staff, guests, devices, and workstations with
+          segmented SSIDs and proper access control.
+        </p>
+      </article>
+
+      <article class="stack-panel">
+        <span class="panel-number">03</span>
+        <p class="panel-eyebrow">Security</p>
+        <h3>Firewall Rules</h3>
+        <p>
+          Block what should never talk, allow only what is needed, and keep
+          guest, IoT, POS, and staff systems separated.
+        </p>
+      </article>
+
+      <article class="stack-panel">
+        <span class="panel-number">04</span>
+        <p class="panel-eyebrow">Control</p>
+        <h3>Segmentation</h3>
+        <p>
+          VLANs for staff, guest, cameras, IoT, servers, POS, and management,
+          built with structure instead of guesswork.
+        </p>
+      </article>
+
+      <article class="stack-panel">
+        <span class="panel-number">05</span>
+        <p class="panel-eyebrow">Support</p>
+        <h3>Ongoing IT</h3>
+        <p>
+          After deployment, the system can be monitored, adjusted, documented,
+          and improved as the business grows.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .horizontal-stack-section {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 100vh;
+    min-height: 42rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .horizontal-stack-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(
+        circle at 72% 42%,
+        color-mix(in srgb, var(--accent) 12%, transparent),
+        transparent 32%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--card-bg) 18%, transparent),
+        transparent 45%,
+        color-mix(in srgb, var(--card-bg) 26%, transparent)
+      );
+    pointer-events: none;
+  }
+
+  .horizontal-copy {
+    position: absolute;
+    left: clamp(1rem, 5vw, 5rem);
+    top: clamp(5.5rem, 12vh, 8rem);
+    width: min(52rem, calc(100vw - 2rem));
+    z-index: 3;
+  }
+
+  .section-kicker {
+    margin: 0 0 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .horizontal-copy h2 {
+    max-width: 48rem;
+    margin: 0;
+    font-size: clamp(2.4rem, 5.6vw, 6rem);
+    font-weight: 500;
+    line-height: 0.92;
+    letter-spacing: -0.08em;
+    color: var(--fg);
+    text-transform: uppercase;
+  }
+
+  .horizontal-viewport {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .horizontal-track {
+    display: flex;
+    gap: clamp(1rem, 2vw, 2rem);
+    width: max-content;
+    padding-left: clamp(1rem, 5vw, 5rem);
+    padding-right: clamp(1rem, 5vw, 5rem);
+    padding-bottom: clamp(3rem, 7vh, 5rem);
+    will-change: transform;
+  }
+
+  .stack-panel {
+    position: relative;
+    width: min(31rem, 72vw);
+    min-height: clamp(20rem, 42vh, 28rem);
+    padding: clamp(1.2rem, 2vw, 1.75rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 16%, transparent);
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--card-bg) 34%, transparent),
+        color-mix(in srgb, var(--card-bg) 76%, transparent)
+      );
+    backdrop-filter: blur(14px) saturate(125%);
+    -webkit-backdrop-filter: blur(14px) saturate(125%);
+    overflow: hidden;
+  }
+
+  .stack-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        circle at 22% 22%,
+        color-mix(in srgb, var(--accent) 16%, transparent),
+        transparent 34%
+      ),
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--fg) 7%, transparent),
+        transparent 42%
+      );
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .stack-panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stack-panel-lead {
+    margin-left: clamp(26rem, 42vw, 46rem);
+  }
+
+  .panel-number {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+  }
+
+  .panel-eyebrow {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .stack-panel h3 {
+    margin: 0;
+    font-size: clamp(2rem, 3.2vw, 3.8rem);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.07em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .stack-panel p:last-child {
+    max-width: 23rem;
+    margin: 1.25rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  @media (width <= 48em) {
+    .horizontal-stack-section {
+      height: auto;
+      min-height: auto;
+      overflow: visible;
+      padding: 5rem 1rem;
+    }
+
+    .horizontal-copy {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .horizontal-copy h2 {
+      font-size: clamp(2.2rem, 11vw, 4rem);
+    }
+
+    .horizontal-viewport {
+      position: relative;
+      inset: auto;
+      display: block;
+      overflow: visible;
+    }
+
+    .horizontal-track {
+      width: 100%;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+      transform: none !important;
+    }
+
+    .stack-panel,
+    .stack-panel-lead {
+      width: 100%;
+      min-height: 22rem;
+      margin-left: 0;
+    }
+  }
+</style>

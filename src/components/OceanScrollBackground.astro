@@ -1,5 +1,6 @@
 ---
 import SiteFooter from "./site-footer.astro";
+import HorizontalStackSection from "./horizontal-stack-section.astro";
 ---
 
 <canvas id="webgl_canvas"></canvas>
@@ -109,60 +110,7 @@ import SiteFooter from "./site-footer.astro";
     </div>
   </section>
 
-  <section id="s1" class="trusted-section">
-    <div class="section-shell">
-      <div class="section-heading">
-        <div class="tag">Trusted platforms & deployment stack</div>
-        <h2>
-          Built on proven<br />
-          infrastructure.
-        </h2>
-      </div>
-
-      <div class="platform-strip">
-        <span>UniFi</span>
-        <span>Omada</span>
-        <span>OPNsense</span>
-        <span>Microsoft 365</span>
-        <span>Active Directory</span>
-        <span>Vercel</span>
-        <span>Hostinger</span>
-        <span>Stripe</span>
-      </div>
-
-      <div class="feature-grid">
-        <article class="text-card">
-          <div class="h-line"></div>
-          <div class="tag">01 — Networking</div>
-          <h2>Clean<br />deployment</h2>
-          <p class="body-text">
-            Wi-Fi coverage, switching, VLAN planning, access points, and
-            documentation for businesses that need the tech to just work.
-          </p>
-        </article>
-
-        <article class="text-card">
-          <div class="h-line"></div>
-          <div class="tag">02 — Security</div>
-          <h2>Controlled<br />traffic</h2>
-          <p class="body-text">
-            Firewall-first architecture, segmented networks, guest isolation,
-            DNS filtering, and sensible access policies.
-          </p>
-        </article>
-
-        <article class="text-card">
-          <div class="h-line"></div>
-          <div class="tag">03 — Web</div>
-          <h2>Digital<br />systems</h2>
-          <p class="body-text">
-            Fast websites, landing pages, SEO structure, contact flows, and
-            polished digital experiences for client-facing businesses.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
+  <HorizontalStackSection />
 
   <section id="s2" class="applications-section">
     <div class="section-shell split-shell">
@@ -274,6 +222,7 @@ import SiteFooter from "./site-footer.astro";
 
 <script>
   import "../scripts/ocean-scroll-background.js";
+  import "../scripts/scrollytelling.js";
 </script>
 
 <style is:global>
