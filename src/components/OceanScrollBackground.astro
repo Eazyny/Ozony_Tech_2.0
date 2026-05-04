@@ -7,7 +7,6 @@ import PackagesCtaSection from "./packages-cta-section.astro";
 import ContactIntakeSection from "./contact-intake-section.astro";
 ---
 
-
 <canvas id="webgl_canvas"></canvas>
 
 <svg class="nav-glass-filter" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
@@ -575,8 +574,6 @@ import ContactIntakeSection from "./contact-intake-section.astro";
     );
     pointer-events: none;
   }
-
-  /* Nav Glass Effect */
 
   .nav-glass-filter {
     position: fixed;
@@ -1199,8 +1196,22 @@ import ContactIntakeSection from "./contact-intake-section.astro";
     line-height: 1.75;
   }
 
+  .applications-section {
+    min-height: auto;
+    padding-block: clamp(5rem, 8vw, 8rem);
+  }
+
+  .applications-section .split-shell {
+    align-items: center;
+  }
+
   .process-heading {
     max-width: 72rem;
+  }
+
+  .process-section {
+    min-height: auto;
+    padding-block: clamp(5rem, 8vw, 8rem);
   }
 
   .process-grid {
@@ -1229,6 +1240,7 @@ import ContactIntakeSection from "./contact-intake-section.astro";
       grid-template-columns: 1fr auto;
     }
 
+    .nav-effect,
     .nav-links {
       display: none;
     }
@@ -1267,7 +1279,6 @@ import ContactIntakeSection from "./contact-intake-section.astro";
     }
 
     .brand-name,
-    .header-cta,
     #credit,
     #scene_strip {
       display: none;
@@ -1314,7 +1325,7 @@ import ContactIntakeSection from "./contact-intake-section.astro";
       margin-block-start: 4rem;
     }
 
-        body {
+    body {
       overflow-x: hidden;
     }
 
@@ -1364,6 +1375,36 @@ import ContactIntakeSection from "./contact-intake-section.astro";
 
     .process-grid {
       width: 100%;
+    }
+  }
+
+  @media (width <= 48em) {
+    .site-header {
+      grid-template-columns: auto auto;
+      justify-content: space-between;
+      padding: 0.85rem 1rem;
+      gap: 1rem;
+    }
+
+    .nav-effect {
+      display: none;
+    }
+
+    .brand-logo {
+      width: clamp(2.5rem, 12vw, 3.5rem);
+    }
+
+    .header-cta {
+      display: inline-flex;
+      justify-self: end;
+      padding: 0.72rem 0.9rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .applications-section {
+      padding-block: 5rem;
     }
   }
 </style>

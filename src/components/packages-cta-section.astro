@@ -262,10 +262,10 @@
   .packages-cta {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
-    gap: clamp(2rem, 6vw, 6rem);
-    margin-top: clamp(2rem, 5vw, 4rem);
-    padding-top: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    margin-top: clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(1.4rem, 3vw, 2.25rem) 0 0;
     border-top: var(--hairline) solid color-mix(in srgb, var(--fg) 24%, transparent);
   }
 
@@ -279,12 +279,12 @@
   }
 
   .packages-cta h3 {
-    max-width: 60rem;
+    max-width: 46rem;
     margin: 0;
     font-family: var(--font-display);
-    font-size: clamp(2.4rem, 5vw, 6rem);
+    font-size: clamp(1.9rem, 3.2vw, 3.6rem);
     font-weight: 400;
-    line-height: 0.9;
+    line-height: 0.95;
     letter-spacing: 0.025em;
     text-transform: uppercase;
     color: var(--fg);
@@ -346,6 +346,24 @@
     .packages-heading h2,
     .packages-cta h3 {
       font-size: clamp(3rem, 16vw, 5.25rem);
+    }
+  }
+
+  @media (width <= 48em) {
+    .packages-cta {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 1.25rem;
+    }
+
+    .packages-cta h3 {
+        max-width: 100%;
+    }
+
+    .packages-cta a {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
     }
   }
 </style>
