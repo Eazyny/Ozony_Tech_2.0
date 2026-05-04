@@ -1,0 +1,614 @@
+<section id="s4" class="final-section oz-footer-section">
+  <footer class="oz-command-footer">
+    <div class="oz-footer-left">
+      <h2 class="oz-footer-headline">
+        FROM <span>NETWORK TO DIGITAL EXPERIENCE:</span> POWERING THE
+        FUTURE OF MODERN BUSINESS SYSTEMS.
+      </h2>
+
+      <div class="oz-footer-dashboard">
+        <article class="oz-time-card oz-glass-card">
+          <div class="oz-data-title">NYC TIME</div>
+          <div class="oz-data-sub">EASTERN HQ</div>
+
+          <div class="oz-clock" aria-hidden="true">
+            <div class="oz-clock-face">
+              <div class="oz-clock-inner-ring"></div>
+
+              <div class="oz-clock-ticks">
+                <span class="tick t1"></span>
+                <span class="tick t2"></span>
+                <span class="tick t3"></span>
+                <span class="tick t4"></span>
+                <span class="tick t5"></span>
+                <span class="tick t6"></span>
+                <span class="tick t7"></span>
+                <span class="tick t8"></span>
+                <span class="tick t9"></span>
+                <span class="tick t10"></span>
+                <span class="tick t11"></span>
+                <span class="tick t12"></span>
+              </div>
+
+              <div class="oz-clock-hands">
+                <span class="oz-hand oz-hand-hour" data-hour-hand></span>
+                <span class="oz-hand oz-hand-minute" data-minute-hand></span>
+                <span class="oz-hand oz-hand-second" data-second-hand></span>
+                <span class="oz-clock-center"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="oz-data-value" data-clock-digital>08:45 AM</div>
+          <div class="oz-data-meta" data-clock-zone>EST</div>
+        </article>
+
+        <article class="oz-data-card oz-glass-card">
+          <div class="oz-data-title">RESPONSE WINDOW</div>
+          <div class="oz-data-sub">SUPPORT CYCLE</div>
+
+          <div class="oz-progress-line">
+            <span style="width: 62%"></span>
+          </div>
+
+          <div class="oz-data-row">
+            <p>
+              REPLY TARGET <span>24 HRS</span>
+            </p>
+            <p>
+              NEXT AVAILABILITY <span>OPEN</span>
+            </p>
+          </div>
+        </article>
+
+        <article class="oz-data-card oz-glass-card">
+          <div class="oz-data-title">DEPLOYMENT ZONE</div>
+          <div class="oz-data-sub">PRIMARY SERVICE AREA</div>
+
+          <div class="oz-progress-line">
+            <span style="width: 58%"></span>
+          </div>
+
+          <div class="oz-data-row">
+            <p>
+              SERVICE AREA <span>NYC / NJ</span>
+            </p>
+            <p>
+              MODE <span>REMOTE + ON-SITE</span>
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="oz-footer-right">
+      <div class="oz-logo-stage oz-glass-card">
+        <div class="oz-logo-placeholder">
+          <span>3D LOGO</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="oz-footer-bottom">
+      <a class="oz-footer-mark" href="#s0" aria-label="Back to top">OZ</a>
+
+      <nav class="oz-footer-nav" aria-label="Footer navigation">
+        <a href="#s1">TECHNOLOGY</a>
+        <a href="#s2">SERVICES</a>
+        <a href="#s3">PROCESS</a>
+        <a href="#s4">CONTACT</a>
+      </nav>
+
+      <div class="oz-footer-meta">
+        <span>Copyright &copy; 2026 Ozony Tech</span>
+        <span>Made by Ozony</span>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<script>
+  function initFooterClock() {
+    const hourHand = document.querySelector("[data-hour-hand]");
+    const minuteHand = document.querySelector("[data-minute-hand]");
+    const secondHand = document.querySelector("[data-second-hand]");
+    const digital = document.querySelector("[data-clock-digital]");
+    const zone = document.querySelector("[data-clock-zone]");
+
+    if (!hourHand || !minuteHand || !secondHand || !digital || !zone) return;
+
+    function updateClock() {
+      const now = new Date();
+
+      const nyFormatter = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+
+      const parts = nyFormatter.formatToParts(now);
+
+      const hour = Number(parts.find((p) => p.type === "hour")?.value || 0);
+      const minute = Number(parts.find((p) => p.type === "minute")?.value || 0);
+      const second = Number(parts.find((p) => p.type === "second")?.value || 0);
+      const dayPeriod = parts.find((p) => p.type === "dayPeriod")?.value || "AM";
+
+      const hourForRotation = hour % 12;
+
+      const hourDeg = hourForRotation * 30 + minute * 0.5 + second * (0.5 / 60);
+      const minuteDeg = minute * 6 + second * 0.1;
+      const secondDeg = second * 6;
+
+      hourHand.style.transform = `translateY(-50%) rotate(${hourDeg}deg)`;
+      minuteHand.style.transform = `translateY(-50%) rotate(${minuteDeg}deg)`;
+      secondHand.style.transform = `translateY(-50%) rotate(${secondDeg}deg)`;
+
+      digital.textContent = `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")} ${dayPeriod.toUpperCase()}`;
+      zone.textContent = "EST";
+    }
+
+    updateClock();
+    clearInterval(window.__ozFooterClockTimer);
+    window.__ozFooterClockTimer = setInterval(updateClock, 1000);
+  }
+
+  document.addEventListener("astro:page-load", initFooterClock);
+  document.addEventListener("DOMContentLoaded", initFooterClock);
+
+  if (document.readyState !== "loading") {
+    initFooterClock();
+  }
+</script>
+
+<style>
+  section#s4.oz-footer-section {
+    width: 100%;
+    min-height: 100vh;
+    display: block;
+    padding: 0;
+  }
+
+  .oz-command-footer {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: clamp(1.5rem, 2vw, 2rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(24rem, 0.9fr);
+    grid-template-rows: 1fr auto;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    overflow: hidden;
+    border-top: var(--hairline) solid color-mix(in srgb, var(--fg) 16%, transparent);
+    background: color-mix(in srgb, var(--card-bg) 72%, transparent);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+  }
+
+  .oz-footer-left {
+    min-width: 0;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: clamp(2.5rem, 6vw, 5.5rem);
+    align-content: start;
+  }
+
+  .oz-footer-headline {
+    max-width: 54rem;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: clamp(1.65rem, 2.35vw, 2.45rem);
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.05em;
+    color: var(--fg);
+    text-transform: uppercase;
+    opacity: 1;
+    translate: none;
+  }
+
+  .oz-footer-headline span {
+    color: var(--accent);
+  }
+
+  .oz-footer-dashboard {
+    width: min(100%, 68rem);
+    display: grid;
+    grid-template-columns: 0.9fr 1fr 1fr;
+    gap: clamp(1rem, 2.4vw, 3rem);
+    align-items: start;
+  }
+
+  .oz-glass-card {
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 16%, transparent);
+    background: color-mix(in srgb, var(--card-bg) 58%, transparent);
+    backdrop-filter: blur(14px) saturate(125%);
+    -webkit-backdrop-filter: blur(14px) saturate(125%);
+  }
+
+  .oz-time-card,
+  .oz-data-card {
+    min-height: 16rem;
+    padding: 1rem;
+  }
+
+  .oz-data-title {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--fg);
+    text-transform: uppercase;
+  }
+
+  .oz-data-sub {
+    margin-top: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .oz-clock {
+    width: 6.2rem;
+    height: 6.2rem;
+    margin-top: 2rem;
+    display: grid;
+    place-items: center;
+  }
+
+  .oz-clock-face {
+    position: relative;
+    width: 5.9rem;
+    height: 5.9rem;
+    border-radius: 50%;
+    border: 0.14rem solid color-mix(in srgb, var(--fg) 38%, transparent);
+    box-shadow:
+      inset 0 0 0 0.18rem rgba(255, 255, 255, 0.04),
+      inset 0 0 0 0.5rem rgba(0, 0, 0, 0.16),
+      0 0 1.2rem rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+  }
+
+  .oz-clock-face::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+      conic-gradient(
+        from 270deg,
+        var(--accent) 0deg,
+        var(--accent) 82deg,
+        transparent 82deg,
+        transparent 360deg
+      );
+    mask: radial-gradient(circle, transparent 70%, #000 71%);
+    -webkit-mask: radial-gradient(circle, transparent 70%, #000 71%);
+    opacity: 0.95;
+  }
+
+  .oz-clock-inner-ring {
+    position: absolute;
+    inset: 0.78rem;
+    border-radius: 50%;
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 48%, transparent);
+  }
+
+  .oz-clock-ticks {
+    position: absolute;
+    inset: 0;
+  }
+
+  .oz-clock-ticks .tick {
+    position: absolute;
+    left: 50%;
+    top: 0.38rem;
+    width: 0.08rem;
+    height: 0.45rem;
+    background: color-mix(in srgb, var(--fg) 78%, transparent);
+    transform-origin: 50% 2.57rem;
+    translate: -50% 0;
+  }
+
+  .oz-clock-ticks .t1 {
+    transform: rotate(0deg);
+  }
+
+  .oz-clock-ticks .t2 {
+    transform: rotate(30deg);
+  }
+
+  .oz-clock-ticks .t3 {
+    transform: rotate(60deg);
+  }
+
+  .oz-clock-ticks .t4 {
+    transform: rotate(90deg);
+  }
+
+  .oz-clock-ticks .t5 {
+    transform: rotate(120deg);
+  }
+
+  .oz-clock-ticks .t6 {
+    transform: rotate(150deg);
+  }
+
+  .oz-clock-ticks .t7 {
+    transform: rotate(180deg);
+  }
+
+  .oz-clock-ticks .t8 {
+    transform: rotate(210deg);
+  }
+
+  .oz-clock-ticks .t9 {
+    transform: rotate(240deg);
+  }
+
+  .oz-clock-ticks .t10 {
+    transform: rotate(270deg);
+  }
+
+  .oz-clock-ticks .t11 {
+    transform: rotate(300deg);
+  }
+
+  .oz-clock-ticks .t12 {
+    transform: rotate(330deg);
+  }
+
+  .oz-clock-hands {
+    position: absolute;
+    inset: 0;
+  }
+
+  .oz-hand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform-origin: left center;
+    border-radius: 999px;
+    will-change: transform;
+  }
+
+  .oz-hand-hour {
+    width: 1.35rem;
+    height: 0.14rem;
+    background: #ffffff;
+    margin-left: -0.1rem;
+  }
+
+  .oz-hand-minute {
+    width: 1.95rem;
+    height: 0.11rem;
+    background: #ffffff;
+    margin-left: -0.08rem;
+  }
+
+  .oz-hand-second {
+    width: 2.25rem;
+    height: 0.08rem;
+    background: #ff3040;
+    margin-left: -0.08rem;
+  }
+
+  .oz-clock-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0.34rem;
+    height: 0.34rem;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 0 0.08rem rgba(0, 0, 0, 0.25);
+  }
+
+  .oz-data-value {
+    margin-top: 1.7rem;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .oz-data-meta {
+    margin-top: 0.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .oz-progress-line {
+    width: 100%;
+    height: var(--hairline);
+    margin-top: 2rem;
+    background: color-mix(in srgb, var(--fg) 34%, transparent);
+    overflow: hidden;
+  }
+
+  .oz-progress-line span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+  }
+
+  .oz-data-row {
+    margin-top: 4.3rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .oz-data-row p {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.3;
+    color: var(--fg);
+    text-transform: uppercase;
+  }
+
+  .oz-data-row span {
+    color: var(--accent);
+  }
+
+  .oz-footer-right {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .oz-logo-stage {
+    width: min(35rem, 100%);
+    height: min(35rem, 72vh);
+    min-height: 24rem;
+    display: grid;
+    place-items: center;
+    border-color: transparent;
+    background:
+      radial-gradient(circle at center, rgba(255, 255, 255, 0.07), transparent 58%),
+      color-mix(in srgb, var(--card-bg) 28%, transparent);
+  }
+
+  .oz-logo-placeholder {
+    width: min(26rem, 85%);
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 18%, transparent);
+    border-radius: 50%;
+    color: color-mix(in srgb, var(--fg) 48%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .oz-footer-bottom {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 4rem 1fr auto;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2rem);
+    padding-top: 1rem;
+  }
+
+  .oz-footer-mark {
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+    border: var(--hairline) solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .oz-footer-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2rem, 4vw, 5rem);
+  }
+
+  .oz-footer-nav a,
+  .oz-footer-meta span {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--fg);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .oz-footer-nav a:hover {
+    color: var(--accent);
+  }
+
+  .oz-footer-meta {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    white-space: nowrap;
+  }
+
+  .oz-footer-meta span:last-child {
+    color: var(--muted);
+    text-transform: none;
+  }
+
+  @media (width <= 72em) {
+    .oz-command-footer {
+      grid-template-columns: 1fr;
+    }
+
+    .oz-footer-dashboard {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
+
+    .oz-logo-stage {
+      width: 100%;
+      height: 22rem;
+      min-height: 22rem;
+    }
+
+    .oz-footer-bottom {
+      grid-template-columns: 1fr;
+      justify-items: start;
+    }
+
+    .oz-footer-nav {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .oz-footer-meta {
+      flex-wrap: wrap;
+      white-space: normal;
+    }
+  }
+
+  @media (width <= 37.5em) {
+    .oz-command-footer {
+      padding: 1.25rem 1rem;
+    }
+
+    .oz-footer-headline {
+      font-size: clamp(1.5rem, 7vw, 2.3rem);
+      max-width: 100%;
+    }
+
+    .oz-time-card,
+    .oz-data-card {
+      min-height: auto;
+    }
+
+    .oz-data-row {
+      margin-top: 2.5rem;
+    }
+
+    .oz-logo-stage {
+      min-height: 16rem;
+      height: 16rem;
+    }
+
+    .oz-footer-nav a,
+    .oz-footer-meta span {
+      font-size: 0.68rem;
+    }
+  }
+</style>

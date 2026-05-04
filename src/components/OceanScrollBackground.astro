@@ -1,3 +1,7 @@
+---
+import SiteFooter from "./site-footer.astro";
+---
+
 <canvas id="webgl_canvas"></canvas>
 
 <header class="site-header">
@@ -265,50 +269,7 @@
     </div>
   </section>
 
-  <section id="s4" class="final-section">
-    <div class="section-shell footer-grid">
-      <div class="final-copy">
-        <div class="tag">Ready for launch</div>
-        <h2>
-          Whether you need better Wi-Fi, stronger security, or a sharper
-          website, the system starts here.
-        </h2>
-
-        <a class="cta" href="mailto:contact@ozony.tech">
-          get in touch
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M1 6h10M6 1l5 5-5 5" />
-          </svg>
-        </a>
-      </div>
-
-      <div class="dashboard-footer">
-        <div class="dash-cell">
-          <span>NYC Time</span>
-          <strong>Eastern</strong>
-          <small>Service area</small>
-        </div>
-
-        <div class="dash-cell">
-          <span>Network Mode</span>
-          <strong>Segmented</strong>
-          <small>VLAN-ready</small>
-        </div>
-
-        <div class="dash-cell">
-          <span>Build Status</span>
-          <strong>Available</strong>
-          <small>Consultation open</small>
-        </div>
-
-        <div class="dash-cell">
-          <span>Contact</span>
-          <strong>Ozony Tech</strong>
-          <small>contact@ozony.tech</small>
-        </div>
-      </div>
-    </div>
-  </section>
+  <SiteFooter />
 </main>
 
 <script>
@@ -332,9 +293,9 @@
     --dark-bg: #0a0a0f;
     --dark-fg: #e8e4d9;
     --dark-muted: #6a6a7e;
-    --dark-accent: #c8ff47;
+    --dark-accent: #00c8ff;
     --dark-card-bg: rgba(10, 10, 15, 0.18);
-    --dark-card-border: rgba(200, 255, 71, 0.22);
+    --dark-card-border: rgba(0, 191, 255, 0.22);
 
     --light-bg: #eef4ff;
     --light-fg: #0b141a;
@@ -998,58 +959,6 @@
 
   .process-step h3 {
     margin-block-start: 7rem;
-  }
-
-  .final-section {
-    align-items: stretch;
-    min-height: 100vh;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr minmax(22rem, 42rem);
-    gap: clamp(2rem, 7vw, 7rem);
-    align-items: end;
-  }
-
-  .final-copy h2 {
-    max-width: 74rem;
-    font-size: clamp(3.6rem, 8vw, 9.5rem);
-  }
-
-  .dashboard-footer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-top: var(--hairline) solid color-mix(in srgb, var(--fg) 24%, transparent);
-    border-left: var(--hairline) solid color-mix(in srgb, var(--fg) 24%, transparent);
-  }
-
-  .dash-cell {
-    min-height: 10rem;
-    padding: 1rem;
-    border-right: var(--hairline) solid color-mix(in srgb, var(--fg) 24%, transparent);
-    border-bottom: var(--hairline) solid color-mix(in srgb, var(--fg) 24%, transparent);
-    background: color-mix(in srgb, var(--card-bg) 70%, transparent);
-  }
-
-  .dash-cell span,
-  .dash-cell small {
-    display: block;
-    color: var(--muted);
-    font-size: 0.62rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .dash-cell strong {
-    display: block;
-    margin-block: 1.8rem 0.35rem;
-    color: var(--fg);
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3vw, 3rem);
-    font-weight: 400;
-    line-height: 0.9;
-    text-transform: uppercase;
   }
 
   @media (width <= 72em) {
