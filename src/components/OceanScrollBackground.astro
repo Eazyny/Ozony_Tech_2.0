@@ -10,17 +10,95 @@ import ContactIntakeSection from "./contact-intake-section.astro";
 
 <canvas id="webgl_canvas"></canvas>
 
+<svg class="nav-glass-filter" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="ozony-nav-glass-filter" color-interpolation-filters="sRGB">
+      <feImage
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+        result="map"
+      ></feImage>
+
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="map"
+        id="ozony-redchannel"
+        xChannelSelector="R"
+        yChannelSelector="B"
+        result="dispRed"
+      />
+      <feColorMatrix
+        in="dispRed"
+        type="matrix"
+        values="1 0 0 0 0
+                0 0 0 0 0
+                0 0 0 0 0
+                0 0 0 1 0"
+        result="red"
+      />
+
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="map"
+        id="ozony-greenchannel"
+        xChannelSelector="R"
+        yChannelSelector="B"
+        result="dispGreen"
+      />
+      <feColorMatrix
+        in="dispGreen"
+        type="matrix"
+        values="0 0 0 0 0
+                0 1 0 0 0
+                0 0 0 0 0
+                0 0 0 1 0"
+        result="green"
+      />
+
+      <feDisplacementMap
+        in="SourceGraphic"
+        in2="map"
+        id="ozony-bluechannel"
+        xChannelSelector="R"
+        yChannelSelector="B"
+        result="dispBlue"
+      />
+      <feColorMatrix
+        in="dispBlue"
+        type="matrix"
+        values="0 0 0 0 0
+                0 0 0 0 0
+                0 0 1 0 0
+                0 0 0 1 0"
+        result="blue"
+      />
+
+      <feBlend in="red" in2="green" mode="screen" result="rg" />
+      <feBlend in="rg" in2="blue" mode="screen" result="output" />
+      <feGaussianBlur in="output" stdDeviation="0.2" />
+    </filter>
+  </defs>
+</svg>
+
 <header class="site-header">
   <a class="brand" href="#s0" aria-label="Ozony Tech home">
     <img class="brand-logo" src="/images/ozony-logo.svg" alt="Ozony Tech" />
   </a>
 
-  <nav class="nav-links" aria-label="Primary navigation">
-    <a href="#s1">technology</a>
-    <a href="#s2">services</a>
-    <a href="#s3">process</a>
-    <a href="#s4">contact</a>
-  </nav>
+  <div class="nav-effect" data-ozony-liquid-nav>
+    <div class="nav-wrap">
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#s1">technology</a>
+        <a href="#s2">services</a>
+        <a href="#s3">process</a>
+        <a href="#contact-intake">contact</a>
+      </nav>
+    </div>
+
+    <div class="nav-displacement-debug" data-ozony-liquid-debug></div>
+  </div>
 
   <a class="header-cta" href="#contact-intake">Get Started</a>
 </header>
@@ -242,6 +320,141 @@ import ContactIntakeSection from "./contact-intake-section.astro";
   import "../scripts/scrollytelling.js";
 </script>
 
+<script is:inline>
+  function initOzonyLiquidNav() {
+    const navEffect = document.querySelector("[data-ozony-liquid-nav]");
+    const debugPen = document.querySelector("[data-ozony-liquid-debug]");
+    const filterImage = document.querySelector("#ozony-nav-glass-filter feImage");
+    const redChannel = document.querySelector("#ozony-redchannel");
+    const greenChannel = document.querySelector("#ozony-greenchannel");
+    const blueChannel = document.querySelector("#ozony-bluechannel");
+    const gaussianBlur = document.querySelector("#ozony-nav-glass-filter feGaussianBlur");
+
+    if (!navEffect || !debugPen || !filterImage || !redChannel || !greenChannel || !blueChannel || !gaussianBlur) {
+      return;
+    }
+
+    const config = {
+      scale: -180,
+      radius: 16,
+      border: 0.07,
+      lightness: 50,
+      displace: 0.2,
+      blend: "difference",
+      x: "R",
+      y: "B",
+      alpha: 0.93,
+      blur: 11,
+      r: 0,
+      g: 10,
+      b: 20,
+      saturation: 1,
+      frost: 0.05,
+    };
+
+    function buildDisplacementImage() {
+      const rect = navEffect.getBoundingClientRect();
+      const width = Math.max(1, Math.round(rect.width));
+      const height = Math.max(1, Math.round(rect.height));
+      const radius = config.radius;
+      const border = Math.min(width, height) * (config.border * 0.5);
+
+      navEffect.style.setProperty("--nav-liquid-width", width);
+      navEffect.style.setProperty("--nav-liquid-height", height);
+      navEffect.style.setProperty("--nav-liquid-radius", radius);
+      navEffect.style.setProperty("--nav-liquid-frost", config.frost);
+      navEffect.style.setProperty("--nav-liquid-saturation", config.saturation);
+
+      const svgMarkup = `
+        <svg class="nav-displacement-image" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="red" x1="100%" y1="0%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#000"/>
+              <stop offset="100%" stop-color="red"/>
+            </linearGradient>
+            <linearGradient id="blue" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#000"/>
+              <stop offset="100%" stop-color="blue"/>
+            </linearGradient>
+          </defs>
+
+          <rect x="0" y="0" width="${width}" height="${height}" fill="black"></rect>
+
+          <rect
+            x="0"
+            y="0"
+            width="${width}"
+            height="${height}"
+            rx="${radius}"
+            fill="url(#red)"
+          />
+
+          <rect
+            x="0"
+            y="0"
+            width="${width}"
+            height="${height}"
+            rx="${radius}"
+            fill="url(#blue)"
+            style="mix-blend-mode: ${config.blend}"
+          />
+
+          <rect
+            x="${border}"
+            y="${border}"
+            width="${width - border * 2}"
+            height="${height - border * 2}"
+            rx="${radius}"
+            fill="hsl(0 0% ${config.lightness}% / ${config.alpha})"
+            style="filter: blur(${config.blur}px)"
+          />
+        </svg>
+      `;
+
+      debugPen.innerHTML = svgMarkup;
+
+      const svgEl = debugPen.querySelector(".nav-displacement-image");
+      const serialized = new XMLSerializer().serializeToString(svgEl);
+      const encoded = encodeURIComponent(serialized);
+      const dataUri = `data:image/svg+xml,${encoded}`;
+
+      filterImage.setAttribute("href", dataUri);
+      filterImage.setAttributeNS("http://www.w3.org/1999/xlink", "href", dataUri);
+
+      [redChannel, greenChannel, blueChannel].forEach((channel) => {
+        channel.setAttribute("xChannelSelector", config.x);
+        channel.setAttribute("yChannelSelector", config.y);
+      });
+
+      redChannel.setAttribute("scale", config.scale + config.r);
+      greenChannel.setAttribute("scale", config.scale + config.g);
+      blueChannel.setAttribute("scale", config.scale + config.b);
+      gaussianBlur.setAttribute("stdDeviation", config.displace);
+    }
+
+    buildDisplacementImage();
+
+    if (!navEffect.dataset.resizeBound) {
+      navEffect.dataset.resizeBound = "true";
+
+      const resizeObserver = new ResizeObserver(() => {
+        buildDisplacementImage();
+      });
+
+      resizeObserver.observe(navEffect);
+
+      window.addEventListener("resize", buildDisplacementImage);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", initOzonyLiquidNav);
+  document.addEventListener("astro:page-load", initOzonyLiquidNav);
+
+  if (document.readyState !== "loading") {
+    initOzonyLiquidNav();
+  }
+</script>
+
 <style is:global>
   @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap");
 
@@ -361,6 +574,76 @@ import ContactIntakeSection from "./contact-intake-section.astro";
       transparent
     );
     pointer-events: none;
+  }
+
+  /* Nav Glass Effect */
+
+  .nav-glass-filter {
+    position: fixed;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .nav-effect {
+    --nav-liquid-width: 360;
+    --nav-liquid-height: 42;
+    --nav-liquid-radius: 16;
+    --nav-liquid-frost: 0.05;
+    --nav-liquid-saturation: 1;
+
+    position: relative;
+    width: fit-content;
+    height: 2.75rem;
+    border-radius: calc(var(--nav-liquid-radius) * 1px);
+    background: hsl(0 0% 0% / var(--nav-liquid-frost));
+    backdrop-filter: url(#ozony-nav-glass-filter) saturate(var(--nav-liquid-saturation));
+    -webkit-backdrop-filter: blur(14px) saturate(1.35);
+    box-shadow:
+      0 0 2px 1px color-mix(in srgb, var(--fg) 15%, transparent) inset,
+      0 0 10px 4px color-mix(in srgb, var(--fg) 10%, transparent) inset,
+      0 4px 16px rgba(17, 17, 26, 0.05),
+      0 8px 24px rgba(17, 17, 26, 0.05),
+      0 16px 56px rgba(17, 17, 26, 0.05),
+      0 4px 16px rgba(17, 17, 26, 0.05) inset,
+      0 8px 24px rgba(17, 17, 26, 0.05) inset,
+      0 16px 56px rgba(17, 17, 26, 0.05) inset;
+    overflow: hidden;
+    pointer-events: auto;
+  }
+
+  .nav-wrap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .nav-effect .nav-links {
+    width: 100%;
+    height: 100%;
+    padding: 0 1.25rem;
+    border: 0;
+    border-radius: inherit;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nav-displacement-debug {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .nav-displacement-debug .nav-displacement-image {
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--nav-liquid-radius) * 1px);
   }
 
   .brand,

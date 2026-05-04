@@ -82,24 +82,23 @@
     </div>
 
     <div class="oz-footer-right">
-        <div class="oz-logo-stage oz-glass-card">
-            <model-viewer
-            class="oz-logo-viewer"
-            src="/models/oz-logo.glb"
-            alt="Ozony Tech 3D logo"
-            auto-rotate
-            auto-rotate-delay="0"
-            rotation-per-second="18deg"
-            camera-orbit="0deg 75deg 105%"
-            interaction-prompt="none"
-            shadow-intensity="0"
-            exposure="1"
-            environment-image="neutral"
-            disable-zoom
-            disable-pan
-            touch-action="none"
-            ></model-viewer>
-        </div>
+      <div class="oz-logo-stage">
+        <model-viewer
+          class="oz-logo-viewer"
+          src="/models/oz-logo.glb"
+          alt="Ozony Tech 3D logo"
+          auto-rotate
+          auto-rotate-delay="0"
+          rotation-per-second="18deg"
+          camera-orbit="0deg 75deg 105%"
+          interaction-prompt="none"
+          shadow-intensity="0"
+          exposure="1"
+          disable-zoom
+          disable-pan
+          touch-action="none"
+        ></model-viewer>
+      </div>
     </div>
 
     <div class="oz-footer-bottom">
@@ -109,7 +108,7 @@
         <a href="#s1">TECHNOLOGY</a>
         <a href="#s2">SERVICES</a>
         <a href="#s3">PROCESS</a>
-        <a href="#s4">CONTACT</a>
+        <a href="#contact-intake">CONTACT</a>
       </nav>
 
       <div class="oz-footer-meta">
@@ -481,6 +480,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
   }
 
   .oz-logo-stage {
@@ -489,18 +491,27 @@
     min-height: 20rem;
     display: grid;
     place-items: center;
-    border-color: transparent;
-    background:
-      radial-gradient(circle at center, rgba(255, 255, 255, 0.07), transparent 58%),
-      color-mix(in srgb, var(--card-bg) 28%, transparent);
+    background: transparent;
+    background-color: transparent;
+    background-image: none;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    overflow: visible;
   }
 
   .oz-logo-viewer {
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      --poster-color: transparent;
-    }
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    background-color: transparent;
+    --poster-color: transparent;
+  }
+
+  .oz-logo-viewer::part(default-progress-bar) {
+    display: none;
+  }
 
   .oz-logo-placeholder {
     width: min(26rem, 85%);
