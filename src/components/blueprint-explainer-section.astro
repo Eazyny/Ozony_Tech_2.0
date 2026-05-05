@@ -1,0 +1,461 @@
+<div id="blueprint-explainer" class="blueprint-explainer-section">
+  <div class="blueprint-explainer-screen">
+    <div class="explainer-topbar">
+      <div>
+        <span>Ozony Blueprint Screen</span>
+        <strong>How the full system comes together</strong>
+      </div>
+
+      <div class="explainer-status">
+        <i></i>
+        deployment path active
+      </div>
+    </div>
+
+    <div class="explainer-grid">
+      <div class="explainer-panel blueprint-story-panel">
+        <span class="panel-kicker">Process</span>
+
+        <h2>
+          From messy tech<br />
+          to a clean business system.
+        </h2>
+
+        <p>
+          Ozony Tech maps how your business actually works, then builds the
+          Wi-Fi, firewall, network segmentation, website, and documentation
+          around that workflow.
+        </p>
+
+        <div class="blueprint-steps">
+          <div class="blueprint-step">
+            <span>01</span>
+            <strong>Discover</strong>
+            <p>Walkthrough, devices, pain points, coverage, and business needs.</p>
+          </div>
+
+          <div class="blueprint-step">
+            <span>02</span>
+            <strong>Design</strong>
+            <p>Plan firewall rules, Wi-Fi layout, VLAN separation, website flow, and handoff docs.</p>
+          </div>
+
+          <div class="blueprint-step">
+            <span>03</span>
+            <strong>Deploy</strong>
+            <p>Install, configure, test, document, and leave the business with a cleaner setup.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="explainer-panel blueprint-map-panel">
+        <span class="panel-kicker">System Map</span>
+
+        <div class="blueprint-map-large">
+          <div class="map-node map-node-wide">
+            <span>WAN</span>
+            <strong>Internet</strong>
+            <small>ISP handoff / modem / gateway</small>
+          </div>
+
+          <div class="map-link"></div>
+
+          <div class="map-node firewall-node">
+            <span>Security</span>
+            <strong>Firewall</strong>
+            <small>rules / VPN / DNS filtering</small>
+          </div>
+
+          <div class="map-link"></div>
+
+          <div class="map-node map-node-wide">
+            <span>Core</span>
+            <strong>Business Network</strong>
+            <small>switches / access points / segmentation</small>
+          </div>
+
+          <div class="map-split">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+          <div class="map-segments">
+            <div class="map-node">
+              <span>VLAN 10</span>
+              <strong>Staff</strong>
+              <small>trusted devices</small>
+            </div>
+
+            <div class="map-node">
+              <span>VLAN 20</span>
+              <strong>Guest</strong>
+              <small>internet only</small>
+            </div>
+
+            <div class="map-node">
+              <span>VLAN 30</span>
+              <strong>POS / IoT</strong>
+              <small>restricted access</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="explainer-panel blueprint-outcome-panel">
+        <span class="panel-kicker">Outcome</span>
+
+        <div class="outcome-card">
+          <span>Reliable Wi-Fi</span>
+          <strong>Coverage that matches the space.</strong>
+          <p>Access points, placement, roaming, and cleaner customer/staff experience.</p>
+        </div>
+
+        <div class="outcome-card">
+          <span>Safer Network</span>
+          <strong>Devices are separated by purpose.</strong>
+          <p>Staff, guest, POS, cameras, and IoT do not all live in one flat network.</p>
+        </div>
+
+        <div class="outcome-card">
+          <span>Website Layer</span>
+          <strong>Customers can find and contact you.</strong>
+          <p>Service pages, intake flow, SEO structure, and a polished digital presence.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="explainer-bottom">
+      <span>Business Wi-Fi</span>
+      <span>Firewalls</span>
+      <span>Network Segmentation</span>
+      <span>IT Systems</span>
+      <span>Websites</span>
+      <span>Documentation</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .blueprint-explainer-section {
+    position: relative;
+    z-index: 3;
+    min-height: 100vh;
+    height: 100vh;
+    display: block;
+    padding: 0;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .blueprint-explainer-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: clamp(0.85rem, 1.4vw, 1.15rem);
+    padding: clamp(5.75rem, 7vw, 6.75rem) clamp(1rem, 2vw, 1.35rem) clamp(1rem, 2vw, 1.35rem);
+    border-top: var(--hairline) solid color-mix(in srgb, var(--fg) 16%, transparent);
+    border-bottom: var(--hairline) solid color-mix(in srgb, var(--fg) 16%, transparent);
+    background:
+      radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 34%),
+      radial-gradient(circle at 78% 84%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 38%),
+      color-mix(in srgb, var(--card-bg) 78%, transparent);
+    backdrop-filter: blur(18px) saturate(130%);
+    -webkit-backdrop-filter: blur(18px) saturate(130%);
+    overflow: hidden;
+  }
+
+  .blueprint-explainer-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--fg) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--fg) 7%, transparent) 1px, transparent 1px);
+    background-size: 2.4rem 2.4rem;
+    mask-image: radial-gradient(circle at center, black, transparent 84%);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .explainer-topbar,
+  .explainer-grid,
+  .explainer-bottom {
+    position: relative;
+    z-index: 2;
+  }
+
+  .explainer-topbar,
+  .explainer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 0.9rem;
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 14%, transparent);
+    background: color-mix(in srgb, var(--bg) 34%, transparent);
+  }
+
+  .explainer-topbar span,
+  .explainer-status,
+  .panel-kicker,
+  .blueprint-step span,
+  .map-node span,
+  .outcome-card span,
+  .explainer-bottom span {
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .explainer-topbar span,
+  .panel-kicker,
+  .blueprint-step span,
+  .map-node span,
+  .outcome-card span {
+    color: var(--accent);
+  }
+
+  .explainer-topbar strong {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--fg);
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.2vw, 2.35rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .explainer-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .explainer-status i {
+    width: 0.52rem;
+    height: 0.52rem;
+    border-radius: 999rem;
+    background: var(--accent);
+    box-shadow: 0 0 1rem color-mix(in srgb, var(--accent) 80%, transparent);
+  }
+
+  .explainer-grid {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.9fr) minmax(24rem, 1.35fr) minmax(15rem, 0.9fr);
+    gap: clamp(0.75rem, 1.3vw, 1rem);
+  }
+
+  .explainer-panel,
+  .map-node,
+  .outcome-card {
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 16%, transparent);
+    background: color-mix(in srgb, var(--bg) 38%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--accent) 4%, transparent) inset,
+      0 1rem 3rem color-mix(in srgb, #000 24%, transparent);
+  }
+
+  .explainer-panel {
+    min-height: 0;
+    padding: clamp(0.9rem, 1.5vw, 1.15rem);
+  }
+
+  .blueprint-story-panel {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.85rem, 1.5vw, 1.1rem);
+  }
+
+  .blueprint-story-panel h2 {
+    margin: 0;
+    color: var(--fg);
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 3.6vw, 4.65rem);
+    font-weight: 400;
+    line-height: 0.88;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    opacity: 1;
+    translate: none;
+  }
+
+  .blueprint-story-panel p,
+  .blueprint-step p,
+  .outcome-card p {
+    margin: 0;
+    color: color-mix(in srgb, var(--fg) 62%, transparent);
+    font-size: clamp(0.76rem, 0.9vw, 0.9rem);
+    line-height: 1.65;
+  }
+
+  .blueprint-steps {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: auto;
+  }
+
+  .blueprint-step {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.75rem;
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 12%, transparent);
+    background: color-mix(in srgb, var(--card-bg) 42%, transparent);
+  }
+
+  .blueprint-step strong,
+  .outcome-card strong {
+    color: var(--fg);
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 1.7vw, 1.9rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .blueprint-map-panel {
+    display: grid;
+    align-items: center;
+  }
+
+  .blueprint-map-large {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    height: 100%;
+  }
+
+  .map-node {
+    width: min(22rem, 100%);
+    padding: 0.8rem 0.95rem;
+  }
+
+  .map-node-wide {
+    width: min(27rem, 100%);
+  }
+
+  .firewall-node {
+    border-color: color-mix(in srgb, var(--accent) 42%, transparent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+  }
+
+  .map-node strong {
+    display: block;
+    margin-top: 0.28rem;
+    color: var(--fg);
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2vw, 2.35rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .map-node small {
+    display: block;
+    margin-top: 0.28rem;
+    color: color-mix(in srgb, var(--fg) 54%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+  }
+
+  .map-link {
+    width: var(--hairline);
+    height: clamp(0.75rem, 1.25vw, 1rem);
+    background: linear-gradient(180deg, transparent, var(--accent), transparent);
+  }
+
+  .map-split {
+    width: min(28rem, 100%);
+    height: 1.7rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .map-split i {
+    justify-self: center;
+    width: var(--hairline);
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 84%, transparent),
+      transparent
+    );
+  }
+
+  .map-segments {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .map-segments .map-node {
+    min-height: 5.5rem;
+  }
+
+  .blueprint-outcome-panel {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .outcome-card {
+    display: grid;
+    align-content: start;
+    gap: 0.45rem;
+    padding: clamp(0.8rem, 1.3vw, 1rem);
+  }
+
+  .explainer-bottom {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .explainer-bottom span {
+    color: color-mix(in srgb, var(--fg) 62%, transparent);
+  }
+
+  @media (width <= 72em) {
+    .blueprint-explainer-section {
+      height: auto;
+      min-height: auto;
+      overflow: visible;
+    }
+
+    .blueprint-explainer-screen {
+      height: auto;
+      min-height: auto;
+      padding-top: 5rem;
+    }
+
+    .explainer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (width <= 37.5em) {
+    .explainer-topbar {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .map-segments {
+      grid-template-columns: 1fr;
+    }
+
+    .explainer-bottom {
+      justify-content: flex-start;
+    }
+  }
+</style>
