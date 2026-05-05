@@ -192,9 +192,15 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
       <HeroBlueprint />
     </div>
   </section>
-<BlueprintExplainerSection />
+  <div id="blueprint-horizontal-stage" class="blueprint-horizontal-stage">
+    <div class="blueprint-stage-layer blueprint-layer">
+      <BlueprintExplainerSection />
+    </div>
 
-<HorizontalStackSection />
+    <div class="blueprint-stage-layer horizontal-layer">
+      <HorizontalStackSection />
+    </div>
+  </div>
 
   <section id="s2" class="applications-section">
     <div class="section-shell split-shell">
@@ -1580,4 +1586,81 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
       width: clamp(2.5rem, 12vw, 3.5rem);
     }
   }
+
+  .blueprint-horizontal-stage {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.blueprint-stage-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  will-change: transform, opacity, filter;
+}
+
+.blueprint-layer {
+  z-index: 2;
+}
+
+.horizontal-layer {
+  z-index: 4;
+  transform: none;
+}
+
+.blueprint-horizontal-stage .blueprint-explainer-section {
+  width: 100%;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+.blueprint-horizontal-stage .blueprint-explainer-screen {
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
+.blueprint-horizontal-stage [data-horizontal-section] {
+  position: relative !important;
+  width: 100% !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+@media (width <= 48em) {
+  .blueprint-horizontal-stage {
+    height: auto;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .blueprint-stage-layer {
+    position: relative;
+    inset: auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  .horizontal-layer {
+    transform: none !important;
+  }
+
+  .blueprint-horizontal-stage .blueprint-explainer-section,
+  .blueprint-horizontal-stage [data-horizontal-section] {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+}
 </style>
