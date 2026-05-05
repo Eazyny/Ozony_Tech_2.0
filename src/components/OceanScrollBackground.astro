@@ -5,6 +5,7 @@ import IndustriesSection from "./industries-section.astro";
 import TrustSection from "./trust-section.astro";
 import PackagesCtaSection from "./packages-cta-section.astro";
 import ContactIntakeSection from "./contact-intake-section.astro";
+import HeroBlueprint from "./hero-blueprint.astro";
 ---
 
 <canvas id="webgl_canvas"></canvas>
@@ -162,10 +163,9 @@ import ContactIntakeSection from "./contact-intake-section.astro";
 
         <h1>
           Business IT,<br />
-          networks,<br />
-          and websites<br />
-          built for<br />
-          real work.
+          networks &<br />
+          websites.
+          <span>Built for real work.</span>
         </h1>
 
         <p class="body-text hero-subtitle">
@@ -188,27 +188,7 @@ import ContactIntakeSection from "./contact-intake-section.astro";
         </div>
       </div>
 
-      <aside class="mission-card">
-        <div class="mission-card-top">
-          <span>system status</span>
-          <strong>ready</strong>
-        </div>
-
-        <div class="mission-readout">
-          <span>01</span>
-          <p>Secure business Wi-Fi</p>
-        </div>
-
-        <div class="mission-readout">
-          <span>02</span>
-          <p>Firewall & segmentation</p>
-        </div>
-
-        <div class="mission-readout">
-          <span>03</span>
-          <p>Websites & IT systems</p>
-        </div>
-      </aside>
+      <HeroBlueprint />
     </div>
   </section>
 
@@ -948,9 +928,9 @@ import ContactIntakeSection from "./contact-intake-section.astro";
 
   .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 26rem);
-    align-items: end;
-    gap: clamp(2rem, 6vw, 6rem);
+    grid-template-columns: minmax(0, 1fr) minmax(22rem, 32rem);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 5rem);
   }
 
   .hero-copy {
@@ -994,8 +974,17 @@ import ContactIntakeSection from "./contact-intake-section.astro";
   }
 
   h1 {
-    font-size: clamp(5rem, 15vw, 17rem);
-    max-width: 8ch;
+    font-size: clamp(4.4rem, 10.8vw, 12.25rem);
+    max-width: 9ch;
+  }
+
+  h1 span {
+    display: block;
+    margin-top: 0.18em;
+    font-size: 0.32em;
+    line-height: 0.95;
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--fg) 76%, transparent);
   }
 
   h2 {
@@ -1091,8 +1080,8 @@ import ContactIntakeSection from "./contact-intake-section.astro";
   }
 
   .mission-card {
-    align-self: stretch;
-    min-height: 28rem;
+    align-self: center;
+    min-height: clamp(21rem, 38vw, 28rem);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

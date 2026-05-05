@@ -1,0 +1,371 @@
+<aside class="hero-blueprint" aria-label="Ozony Tech system blueprint">
+  <div class="blueprint-header">
+    <div>
+      <span class="blueprint-kicker">Ozony System Blueprint</span>
+      <h2>Secure business stack</h2>
+    </div>
+
+    <span class="blueprint-status">live</span>
+  </div>
+
+  <div class="blueprint-map">
+    <div class="blueprint-node blueprint-node-main internet">
+      <span>01</span>
+      <strong>Internet</strong>
+      <small>ISP / WAN handoff</small>
+    </div>
+
+    <div class="blueprint-connector vertical connector-one"></div>
+
+    <div class="blueprint-node blueprint-node-main firewall">
+      <span>02</span>
+      <strong>Firewall</strong>
+      <small>rules / VPN / filtering</small>
+    </div>
+
+    <div class="blueprint-connector vertical connector-two"></div>
+
+    <div class="blueprint-node blueprint-node-main network">
+      <span>03</span>
+      <strong>Business Network</strong>
+      <small>switching / access points</small>
+    </div>
+
+    <div class="blueprint-branches">
+      <div class="branch-line branch-left"></div>
+      <div class="branch-line branch-center"></div>
+      <div class="branch-line branch-right"></div>
+    </div>
+
+    <div class="blueprint-segments">
+      <div class="blueprint-node segment">
+        <span>10</span>
+        <strong>Staff</strong>
+      </div>
+
+      <div class="blueprint-node segment">
+        <span>20</span>
+        <strong>Guest</strong>
+      </div>
+
+      <div class="blueprint-node segment">
+        <span>30</span>
+        <strong>POS / IoT</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="blueprint-footer">
+    <div>
+      <span>Website layer</span>
+      <strong>SEO / intake / service pages</strong>
+    </div>
+
+    <div>
+      <span>Documentation</span>
+      <strong>network map / credentials / handoff</strong>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .hero-blueprint {
+    position: relative;
+    align-self: center;
+    width: min(31rem, 100%);
+    min-height: clamp(27rem, 42vw, 36rem);
+    padding: clamp(1rem, 2vw, 1.35rem);
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 20%, transparent);
+    background:
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--card-bg) 86%, transparent),
+        color-mix(in srgb, var(--bg) 45%, transparent)
+      );
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+    overflow: hidden;
+  }
+
+  .hero-blueprint::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--fg) 8%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--fg) 8%, transparent) 1px, transparent 1px);
+    background-size: 2.25rem 2.25rem;
+    mask-image: radial-gradient(circle at center, black, transparent 82%);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .hero-blueprint::after {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    background:
+      radial-gradient(circle at 50% 10%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 34%),
+      radial-gradient(circle at 85% 80%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 30%);
+    opacity: 0.75;
+    pointer-events: none;
+  }
+
+  .blueprint-header,
+  .blueprint-map,
+  .blueprint-footer {
+    position: relative;
+    z-index: 2;
+  }
+
+  .blueprint-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: var(--hairline) solid color-mix(in srgb, var(--fg) 16%, transparent);
+  }
+
+  .blueprint-kicker,
+  .blueprint-status,
+  .blueprint-node span,
+  .blueprint-footer span {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .blueprint-kicker,
+  .blueprint-node span,
+  .blueprint-footer span {
+    color: var(--accent);
+  }
+
+  .blueprint-header h2 {
+    margin-top: 0.45rem;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.8vw, 4rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--fg);
+    opacity: 1;
+    translate: none;
+  }
+
+  .blueprint-status {
+    padding: 0.4rem 0.55rem;
+    border: var(--hairline) solid color-mix(in srgb, var(--accent) 45%, transparent);
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+  }
+
+  .blueprint-map {
+    display: grid;
+    justify-items: center;
+    padding: clamp(1rem, 2.4vw, 1.65rem) 0;
+  }
+
+  .blueprint-node {
+    position: relative;
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 18%, transparent);
+    background: color-mix(in srgb, var(--bg) 42%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--accent) 4%, transparent) inset,
+      0 1rem 3rem color-mix(in srgb, #000 26%, transparent);
+  }
+
+  .blueprint-node-main {
+    width: min(19rem, 100%);
+    padding: 0.8rem 0.9rem;
+  }
+
+  .blueprint-node strong {
+    display: block;
+    margin-top: 0.32rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.45rem, 2.4vw, 2.45rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .blueprint-node small {
+    display: block;
+    margin-top: 0.32rem;
+    color: color-mix(in srgb, var(--fg) 54%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+  }
+
+  .blueprint-connector.vertical {
+    width: var(--hairline);
+    height: clamp(1.15rem, 2vw, 1.55rem);
+    background: linear-gradient(
+      180deg,
+      transparent,
+      color-mix(in srgb, var(--accent) 86%, transparent),
+      transparent
+    );
+  }
+
+  .blueprint-branches {
+    position: relative;
+    width: min(21rem, 100%);
+    height: 2.1rem;
+  }
+
+  .branch-line {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: var(--hairline);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--accent) 80%, transparent),
+      transparent
+    );
+    transform-origin: top;
+  }
+
+  .branch-left {
+    left: 22%;
+    rotate: 28deg;
+  }
+
+  .branch-center {
+    left: 50%;
+  }
+
+  .branch-right {
+    right: 22%;
+    rotate: -28deg;
+  }
+
+  .blueprint-segments {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+
+  .blueprint-node.segment {
+    min-height: 5.2rem;
+    padding: 0.7rem;
+  }
+
+  .blueprint-node.segment strong {
+    font-size: clamp(1.15rem, 1.9vw, 1.65rem);
+  }
+
+  .blueprint-footer {
+    display: grid;
+    gap: 0.65rem;
+    padding-top: 1rem;
+    border-top: var(--hairline) solid color-mix(in srgb, var(--fg) 16%, transparent);
+  }
+
+  .blueprint-footer div {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.72rem 0.8rem;
+    border: var(--hairline) solid color-mix(in srgb, var(--fg) 14%, transparent);
+    background: color-mix(in srgb, var(--bg) 34%, transparent);
+  }
+
+  .blueprint-footer strong {
+    color: color-mix(in srgb, var(--fg) 70%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+  }
+
+  .internet,
+  .firewall,
+  .network,
+  .segment {
+    animation: blueprint-float 5.5s ease-in-out infinite;
+  }
+
+  .firewall {
+    animation-delay: -1.2s;
+  }
+
+  .network {
+    animation-delay: -2.1s;
+  }
+
+  .segment:nth-child(1) {
+    animation-delay: -0.4s;
+  }
+
+  .segment:nth-child(2) {
+    animation-delay: -1.6s;
+  }
+
+  .segment:nth-child(3) {
+    animation-delay: -2.4s;
+  }
+
+  @keyframes blueprint-float {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+
+    50% {
+      translate: 0 -0.35rem;
+    }
+  }
+
+  @media (width <= 72em) {
+    .hero-blueprint {
+      width: 100%;
+      min-height: auto;
+    }
+  }
+
+  @media (width <= 37.5em) {
+    .hero-blueprint {
+      padding: 1rem;
+    }
+
+    .blueprint-header {
+      display: grid;
+    }
+
+    .blueprint-segments {
+      grid-template-columns: 1fr;
+    }
+
+    .blueprint-branches {
+      display: none;
+    }
+
+    .blueprint-node-main {
+      width: 100%;
+    }
+
+    .blueprint-node.segment {
+      min-height: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .internet,
+    .firewall,
+    .network,
+    .segment {
+      animation: none;
+    }
+  }
+</style>
