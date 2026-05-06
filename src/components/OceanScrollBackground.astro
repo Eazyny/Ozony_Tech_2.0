@@ -95,13 +95,50 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
         <a href="#s2">services</a>
         <a href="#s3">process</a>
         <a href="#contact-intake">contact</a>
+          <div class="nav-theme-control">
+            <fieldset class="switcher" aria-label="Choose theme">
+              <legend class="switcher__legend">Choose theme</legend>
+
+              <label class="switcher__option" aria-label="Light theme">
+                <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" />
+                <svg class="switcher__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 36 36" aria-hidden="true">
+                  <path fill="var(--c)" fill-rule="evenodd" d="M18 12a6 6 0 1 1 0 12 6 6 0 0 1 0-12Zm0 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z" clip-rule="evenodd" />
+                  <path fill="var(--c)" d="M17 6.038a1 1 0 1 1 2 0v3a1 1 0 0 1-2 0v-3ZM24.244 7.742a1 1 0 1 1 1.618 1.176L24.1 11.345a1 1 0 1 1-1.618-1.176l1.763-2.427ZM29.104 13.379a1 1 0 0 1 .618 1.902l-2.854.927a1 1 0 1 1-.618-1.902l2.854-.927ZM29.722 20.795a1 1 0 0 1-.619 1.902l-2.853-.927a1 1 0 1 1 .618-1.902l2.854.927ZM25.862 27.159a1 1 0 0 1-1.618 1.175l-1.763-2.427a1 1 0 1 1 1.618-1.175l1.763 2.427ZM19 30.038a1 1 0 0 1-2 0v-3a1 1 0 1 1 2 0v3ZM11.755 28.334a1 1 0 0 1-1.618-1.175l1.764-2.427a1 1 0 1 1 1.618 1.175l-1.764 2.427ZM6.896 22.697a1 1 0 1 1-.618-1.902l2.853-.927a1 1 0 1 1 .618 1.902l-2.853.927ZM6.278 15.28a1 1 0 1 1 .618-1.901l2.853.927a1 1 0 1 1-.618 1.902l-2.853-.927ZM10.137 8.918a1 1 0 0 1 1.618-1.176l1.764 2.427a1 1 0 0 1-1.618 1.176l-1.764-2.427Z" />
+                </svg>
+              </label>
+
+              <label class="switcher__option" aria-label="Dark theme">
+                <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" checked />
+                <svg class="switcher__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 36 36" aria-hidden="true">
+                  <path fill="var(--c)" d="M12.5 8.473a10.968 10.968 0 0 1 8.785-.97 7.435 7.435 0 0 0-3.737 4.672l-.09.373A7.454 7.454 0 0 0 28.732 20.4a10.97 10.97 0 0 1-5.232 7.125l-.497.27c-5.014 2.566-11.175.916-14.234-3.813l-.295-.483C5.53 18.403 7.13 11.93 12.017 8.77l.483-.297Zm4.234.616a8.946 8.946 0 0 0-2.805.883l-.429.234A9 9 0 0 0 10.206 22.5l.241.395A9 9 0 0 0 22.5 25.794l.416-.255a8.94 8.94 0 0 0 2.167-1.99 9.433 9.433 0 0 1-2.782-.313c-5.043-1.352-8.036-6.535-6.686-11.578l.147-.491c.242-.745.573-1.44.972-2.078Z" />
+                </svg>
+              </label>
+
+              <label class="switcher__option" aria-label="Dim theme">
+                <input class="switcher__input" type="radio" name="theme" value="dim" c-option="3" />
+                <svg class="switcher__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 36 36" aria-hidden="true">
+                  <path fill="var(--c)" d="M5 21a1 1 0 0 1 1-1h24a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1ZM12 25a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H13a1 1 0 0 1-1-1ZM15 29a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2h-4a1 1 0 0 1-1-1ZM18 13a6 6 0 0 1 5.915 7h-2.041A4.005 4.005 0 0 0 18 15a4 4 0 0 0-3.874 5h-2.041A6 6 0 0 1 18 13ZM17 7.038a1 1 0 1 1 2 0v3a1 1 0 0 1-2 0v-3ZM24.244 8.742a1 1 0 1 1 1.618 1.176L24.1 12.345a1 1 0 1 1-1.618-1.176l1.763-2.427ZM29.104 14.379a1 1 0 0 1 .618 1.902l-2.854.927a1 1 0 1 1-.618-1.902l2.854-.927ZM6.278 16.28a1 1 0 1 1 .618-1.901l2.853.927a1 1 0 1 1-.618 1.902l-2.853-.927ZM10.137 9.918a1 1 0 0 1 1.618-1.176l1.764 2.427a1 1 0 0 1-1.618 1.176l-1.764-2.427Z" />
+                </svg>
+              </label>
+
+              <div class="switcher__filter" aria-hidden="true">
+                <svg>
+                  <filter id="switcher" primitiveUnits="objectBoundingBox">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.015 0.085" numOctaves="2" seed="7" result="map" />
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="0.04" result="blur" />
+                    <feDisplacementMap in="blur" in2="map" scale="0.5" xChannelSelector="R" yChannelSelector="G" />
+                  </filter>
+                </svg>
+              </div>
+            </fieldset>
+          </div>
       </nav>
     </div>
 
     <div class="nav-displacement-debug" data-ozony-liquid-debug></div>
   </div>
 
-  <a class="header-cta" href="#contact-intake">Get Started</a>
+
 
   <button
     class="mobile-menu-toggle"
@@ -131,16 +168,6 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
   <div class="scene-label" id="scene_name">DAWN</div>
 </div>
 
-<button id="theme_toggle" aria-label="Toggle light/dark mode">
-  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-    <circle cx="12" cy="12" r="4" />
-    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-  </svg>
-
-  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
-  </svg>
-</button>
 
 <div id="scene_strip">
   <div class="scene-dot active"></div>
@@ -568,6 +595,17 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
     --card-border: var(--light-card-border);
   }
 
+  :root[data-theme="dim"] {
+    color-scheme: dark;
+
+    --bg: #152433;
+    --fg: #d5dbe2;
+    --muted: #8aa7ba;
+    --accent: #ff48a9;
+    --card-bg: rgba(12, 26, 38, 0.46);
+    --card-border: rgba(255, 72, 169, 0.26);
+  }
+
   html {
     color-scheme: dark;
     scroll-behavior: smooth;
@@ -598,6 +636,12 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
     background:
       linear-gradient(to bottom, rgba(238, 244, 255, 0.12), transparent 30%, rgba(238, 244, 255, 0.34)),
       radial-gradient(circle at 50% 28%, transparent 0 30%, rgba(238, 244, 255, 0.18) 74%);
+  }
+
+  :root[data-theme="dim"] body::before {
+    background:
+      linear-gradient(to bottom, rgba(21, 36, 51, 0.2), transparent 30%, rgba(21, 36, 51, 0.46)),
+      radial-gradient(circle at 50% 28%, transparent 0 30%, rgba(21, 36, 51, 0.26) 74%);
   }
 
   #webgl_canvas {
@@ -703,6 +747,9 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
   .brand,
   .nav-links,
   .nav-links a,
+  .nav-theme-control,
+  .switcher,
+  .switcher__option,
   .header-cta,
   .ghost-link {
     color: inherit;
@@ -783,6 +830,329 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
     background: var(--accent);
   }
 
+  .nav-theme-control {
+    position: relative;
+    flex: 0 0 7.35rem;
+    width: 7.35rem;
+    height: 2rem;
+    margin-left: 0.15rem;
+    pointer-events: auto;
+  }
+
+  .switcher {
+    --c-glass: #bbbbbc;
+    --c-light: #ffffff;
+    --c-dark: #000000;
+    --c-content: var(--fg);
+    --c-action: var(--accent);
+    --glass-reflex-dark: 2;
+    --glass-reflex-light: 0.3;
+    --saturation: 150%;
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 5;
+    translate: 0 -50%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 244px;
+    max-width: 244px;
+    height: 70px;
+    box-sizing: border-box;
+    padding: 8px 12px 10px;
+    margin: 0;
+    border: none;
+    border-radius: 99em;
+    font-size: 1rem;
+    background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+    backdrop-filter: blur(8px) url(#switcher) saturate(var(--saturation));
+    -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
+    box-shadow:
+      inset 0 0 0 1px
+        color-mix(
+          in srgb,
+          var(--c-light) calc(var(--glass-reflex-light) * 10%),
+          transparent
+        ),
+      inset 1.8px 3px 0px -2px
+        color-mix(
+          in srgb,
+          var(--c-light) calc(var(--glass-reflex-light) * 90%),
+          transparent
+        ),
+      inset -2px -2px 0px -2px
+        color-mix(
+          in srgb,
+          var(--c-light) calc(var(--glass-reflex-light) * 80%),
+          transparent
+        ),
+      inset -3px -8px 1px -6px
+        color-mix(
+          in srgb,
+          var(--c-light) calc(var(--glass-reflex-light) * 60%),
+          transparent
+        ),
+      inset -0.3px -1px 4px 0px
+        color-mix(
+          in srgb,
+          var(--c-dark) calc(var(--glass-reflex-dark) * 12%),
+          transparent
+        ),
+      inset -1.5px 2.5px 0px -2px
+        color-mix(
+          in srgb,
+          var(--c-dark) calc(var(--glass-reflex-dark) * 20%),
+          transparent
+        ),
+      inset 0px 3px 4px -2px
+        color-mix(
+          in srgb,
+          var(--c-dark) calc(var(--glass-reflex-dark) * 20%),
+          transparent
+        ),
+      inset 2px -6.5px 1px -4px
+        color-mix(
+          in srgb,
+          var(--c-dark) calc(var(--glass-reflex-dark) * 10%),
+          transparent
+        ),
+      0px 1px 5px 0px
+        color-mix(
+          in srgb,
+          var(--c-dark) calc(var(--glass-reflex-dark) * 10%),
+          transparent
+        ),
+      0px 6px 16px 0px
+        color-mix(
+          in srgb,
+          var(--c-dark) calc(var(--glass-reflex-dark) * 8%),
+          transparent
+        );
+    transform: scale(0.46);
+    transform-origin: left center;
+    pointer-events: auto;
+    transition:
+      background-color 400ms cubic-bezier(1, 0, 0.4, 1),
+      box-shadow 400ms cubic-bezier(1, 0, 0.4, 1);
+  }
+
+  :root[data-theme="light"] .switcher {
+    --glass-reflex-dark: 1;
+    --glass-reflex-light: 1;
+    --saturation: 150%;
+  }
+
+  :root[data-theme="dim"] .switcher {
+    --c-light: #99deff;
+    --c-dark: #20001b;
+    --c-glass: hsl(335 250% 74% / 1);
+    --c-content: #d5dbe2;
+    --c-action: #ff48a9;
+    --glass-reflex-dark: 2;
+    --glass-reflex-light: 0.7;
+    --saturation: 200%;
+  }
+
+  .switcher__legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+
+  .switcher__input {
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+  }
+
+  .switcher__icon {
+    display: block;
+    width: 100%;
+    transition: scale 200ms cubic-bezier(0.5, 0, 0, 1);
+  }
+
+  .switcher__filter {
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .switcher__option {
+    --c: var(--c-content);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 16px;
+    width: 68px;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 99em;
+    opacity: 1;
+    transition: all 160ms;
+  }
+
+  .switcher__option:hover {
+    --c: var(--c-action);
+    cursor: pointer;
+  }
+
+  .switcher__option:hover .switcher__icon {
+    scale: 1.2;
+  }
+
+  .switcher__option:has(input:checked) {
+    --c: var(--c-content);
+    cursor: auto;
+  }
+
+  .switcher__option:has(input:checked) .switcher__icon {
+    scale: 1;
+  }
+
+  .switcher::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    display: block;
+    width: 84px;
+    height: calc(100% - 10px);
+    border-radius: 99em;
+    background-color: color-mix(in srgb, var(--c-glass) 36%, transparent);
+    z-index: -1;
+    box-shadow:
+      inset 0 0 0 1px
+        color-mix(
+          in srgb,
+          var(--c-light) calc(var(--glass-reflex-light) * 10%),
+          transparent
+        ),
+      inset 2px 1px 0px -1px
+        color-mix(
+          in srgb,
+          var(--c-light) calc(var(--glass-reflex-light) * 90%),
+          transparent
+        ),
+      inset -1.5px -1px 0px -1px
+        color-mix(
+          in srgb,
+          var(--c-light) calc(var(--glass-reflex-light) * 80%),
+          transparent
+        ),
+      inset -2px -6px 1px -5px
+        color-mix(
+          in srgb,
+          var(--c-light) calc(var(--glass-reflex-light) * 60%),
+          transparent
+        ),
+      inset -1px 2px 3px -1px
+        color-mix(
+          in srgb,
+          var(--c-dark) calc(var(--glass-reflex-dark) * 20%),
+          transparent
+        ),
+      inset 0px -4px 1px -2px
+        color-mix(
+          in srgb,
+          var(--c-dark) calc(var(--glass-reflex-dark) * 10%),
+          transparent
+        ),
+      0px 3px 6px 0px
+        color-mix(
+          in srgb,
+          var(--c-dark) calc(var(--glass-reflex-dark) * 8%),
+          transparent
+        );
+  }
+
+  .switcher:has(input[c-option="1"]:checked)::after {
+    translate: 0 0;
+    transform-origin: right;
+    transition:
+      background-color 400ms cubic-bezier(1, 0, 0.4, 1),
+      box-shadow 400ms cubic-bezier(1, 0, 0.4, 1),
+      translate 400ms cubic-bezier(1, 0, 0.4, 1);
+    animation: scaleToggle 440ms ease;
+  }
+
+  .switcher:has(input[c-option="2"]:checked)::after {
+    translate: 76px 0;
+    transition:
+      background-color 400ms cubic-bezier(1, 0, 0.4, 1),
+      box-shadow 400ms cubic-bezier(1, 0, 0.4, 1),
+      translate 400ms cubic-bezier(1, 0, 0.4, 1);
+    animation: scaleToggle2 440ms ease;
+  }
+
+  .switcher[c-previous="1"]:has(input[c-option="2"]:checked)::after {
+    transform-origin: left;
+  }
+
+  .switcher[c-previous="3"]:has(input[c-option="2"]:checked)::after {
+    transform-origin: right;
+  }
+
+  .switcher:has(input[c-option="3"]:checked)::after {
+    translate: 152px 0;
+    transform-origin: left;
+    transition:
+      background-color 400ms cubic-bezier(1, 0, 0.4, 1),
+      box-shadow 400ms cubic-bezier(1, 0, 0.4, 1),
+      translate 400ms cubic-bezier(1, 0, 0.4, 1);
+    animation: scaleToggle3 440ms ease;
+  }
+
+  @keyframes scaleToggle {
+    0% {
+      scale: 1 1;
+    }
+    50% {
+      scale: 1.1 1;
+    }
+    100% {
+      scale: 1 1;
+    }
+  }
+
+  @keyframes scaleToggle2 {
+    0% {
+      scale: 1 1;
+    }
+    50% {
+      scale: 1.2 1;
+    }
+    100% {
+      scale: 1 1;
+    }
+  }
+
+  @keyframes scaleToggle3 {
+    0% {
+      scale: 1 1;
+    }
+    50% {
+      scale: 1.1 1;
+    }
+    100% {
+      scale: 1 1;
+    }
+  }
+
   #hud {
     position: fixed;
     top: 5rem;
@@ -844,59 +1214,6 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
     scale: 1.8;
   }
 
-  #theme_toggle {
-    position: fixed;
-    bottom: var(--ui-inset);
-    left: var(--nav-x);
-    translate: -50% 0;
-    z-index: var(--z-ui);
-    width: 2rem;
-    height: 2rem;
-    border: none;
-    background: color-mix(in srgb, var(--muted) 35%, transparent);
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-  }
-
-  #theme_toggle:hover {
-    background: color-mix(in srgb, var(--muted) 55%, transparent);
-  }
-
-  #theme_toggle svg {
-    width: 0.875rem;
-    height: 0.875rem;
-    position: absolute;
-    transition: opacity 0.3s ease, rotate 0.3s ease;
-    color: var(--accent);
-  }
-
-  :root[data-theme="light"] #theme_toggle svg {
-    color: var(--fg);
-  }
-
-  #theme_toggle .icon-sun {
-    opacity: 1;
-    rotate: 0deg;
-  }
-
-  #theme_toggle .icon-moon {
-    opacity: 0;
-    rotate: 90deg;
-  }
-
-  :root[data-theme="light"] #theme_toggle .icon-sun {
-    opacity: 0;
-    rotate: -90deg;
-  }
-
-  :root[data-theme="light"] #theme_toggle .icon-moon {
-    opacity: 1;
-    rotate: 0deg;
-  }
 
   #credit {
     position: fixed;
@@ -1354,11 +1671,6 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
       display: none;
     }
 
-    #theme_toggle {
-      bottom: 1rem;
-      left: 1.25rem;
-      translate: 0 0;
-    }
 
     section {
       padding: 5.5rem 1.25rem;
@@ -1585,6 +1897,27 @@ import BlueprintExplainerSection from "./blueprint-explainer-section.astro";
     .brand-logo {
       width: clamp(2.5rem, 12vw, 3.5rem);
     }
+  }
+
+
+  @media (width <= 48em) {
+    .site-header {
+      grid-template-columns: auto 1fr auto;
+      justify-content: space-between;
+      padding: 0.85rem 1rem;
+      gap: 0.75rem;
+    }
+
+    .nav-effect {
+      display: none;
+    }
+
+    .mobile-menu-toggle {
+      grid-column: 3;
+    }
+  }
+
+  @media (width <= 37.5em) {
   }
 
   .blueprint-horizontal-stage {

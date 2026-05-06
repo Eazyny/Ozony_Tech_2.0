@@ -438,6 +438,7 @@ const hexToVec3 = (hex) => {
 const bgColors = {
   dark: "#0a0a0f",
   light: "#eef4ff",
+  dim: "#152433",
 };
 
 const updateBg = (theme) => {
@@ -445,31 +446,107 @@ const updateBg = (theme) => {
   gl.uniform3f(uBg, r, g, b);
 };
 
+const themeSwitcher = document.querySelector(".switcher");
+const themeInputs = themeSwitcher
+  ? themeSwitcher.querySelectorAll('input[type="radio"][name="theme"]')
+  : [];
+
+const trackPrevious = (el) => {
+  const radios = el.querySelectorAll('input[type="radio"]');
+  let previousValue = null;
+
+  const initiallyChecked = el.querySelector('input[type="radio"]:checked');
+  if (initiallyChecked) {
+    previousValue = initiallyChecked.getAttribute("c-option");
+    el.setAttribute("c-previous", previousValue);
+  }
+
+  radios.forEach((radio) => {
+    radio.addEventListener("change", () => {
+      if (radio.checked) {
+        el.setAttribute("c-previous", previousValue ?? "");
+        previousValue = radio.getAttribute("c-option");
+      }
+    });
+  });
+};
+
+if (themeSwitcher) {
+  trackPrevious(themeSwitcher);
+}
+
+const allowedThemes = ["light", "dark", "dim"];
+
 const mq = window.matchMedia("(prefers-color-scheme: dark)");
 const getSystemTheme = () => (mq.matches ? "dark" : "light");
 
-let themeOverride = null;
+const getStoredTheme = () => {
+  try {
+    const storedTheme = window.localStorage.getItem("ozony-theme");
+    return allowedThemes.includes(storedTheme) ? storedTheme : null;
+  } catch {
+    return null;
+  }
+};
+
+let themeOverride = getStoredTheme();
 const getActiveTheme = () => themeOverride ?? getSystemTheme();
 
-const applyTheme = (theme) => {
-  document.documentElement.setAttribute("data-theme", theme);
-  document.documentElement.style.colorScheme = theme;
-  updateBg(theme);
+const syncThemeSwitcher = (theme) => {
+  if (!themeSwitcher) return;
+
+  const radio = themeSwitcher.querySelector(
+    `input[type="radio"][value="${theme}"]`,
+  );
+
+  if (radio && !radio.checked) {
+    radio.checked = true;
+  }
+
+  const checked = themeSwitcher.querySelector('input[type="radio"]:checked');
+  if (checked) {
+    themeSwitcher.setAttribute(
+      "c-previous",
+      checked.getAttribute("c-option") ?? "",
+    );
+  }
 };
+
+const applyTheme = (theme) => {
+  const resolvedTheme = allowedThemes.includes(theme) ? theme : "dark";
+
+  document.documentElement.setAttribute("data-theme", resolvedTheme);
+  document.documentElement.style.colorScheme =
+    resolvedTheme === "light" ? "light" : "dark";
+
+  updateBg(resolvedTheme);
+  syncThemeSwitcher(resolvedTheme);
+};
+
+themeInputs.forEach((radio) => {
+  radio.addEventListener("change", () => {
+    if (!radio.checked) return;
+
+    const nextTheme = radio.value;
+    if (!allowedThemes.includes(nextTheme)) return;
+
+    themeOverride = nextTheme;
+
+    try {
+      window.localStorage.setItem("ozony-theme", nextTheme);
+    } catch {
+      // Storage can fail in some privacy modes. Theme still works for current session.
+    }
+
+    applyTheme(nextTheme);
+  });
+});
 
 applyTheme(getActiveTheme());
 
 mq.addEventListener("change", () => {
   if (!themeOverride) applyTheme(getSystemTheme());
 });
-
-const themeToggle = document.getElementById("theme_toggle");
-if (themeToggle) {
-  themeToggle.addEventListener("click", () => {
-    themeOverride = getActiveTheme() === "dark" ? "light" : "dark";
-    applyTheme(themeOverride);
-  });
-}
 
 const NAMES = ["DAWN", "MIDDAY", "DUSK", "NIGHT", "STORM"];
 const N = NAMES.length;
