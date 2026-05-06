@@ -818,13 +818,14 @@ function initSupportingSectionMotion() {
       scale: 1,
       rotateX: 0,
       filter: "blur(0px)",
-      ease: "none",
+      ease: "power3.out",
+      duration: 0.9,
+      clearProps: "transform,opacity,filter",
       scrollTrigger: {
         id: "oz-footer-reveal",
         trigger: ".oz-command-footer",
-        start: "top 94%",
-        end: "top 58%",
-        scrub: 1.05,
+        start: "top 88%",
+        once: true,
       },
     },
   );
