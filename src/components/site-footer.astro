@@ -8,42 +8,66 @@
 
       <div class="oz-footer-dashboard">
         <article class="oz-time-card oz-glass-card">
-          <div class="oz-data-title">NYC TIME</div>
-          <div class="oz-data-sub">EASTERN HQ</div>
+          <span class="oz-card-scan" aria-hidden="true"></span>
 
-          <div class="oz-clock" aria-hidden="true">
-            <div class="oz-clock-face">
-              <div class="oz-clock-inner-ring"></div>
+          <div class="oz-card-topline">
+            <span class="oz-card-node">NODE 01</span>
+            <span class="oz-card-code">TIME NODE</span>
+          </div>
 
-              <div class="oz-clock-ticks">
-                <span class="tick t1"></span>
-                <span class="tick t2"></span>
-                <span class="tick t3"></span>
-                <span class="tick t4"></span>
-                <span class="tick t5"></span>
-                <span class="tick t6"></span>
-                <span class="tick t7"></span>
-                <span class="tick t8"></span>
-                <span class="tick t9"></span>
-                <span class="tick t10"></span>
-                <span class="tick t11"></span>
-                <span class="tick t12"></span>
+          <div class="oz-data-title">TIME NODE</div>
+          <div class="oz-data-sub">HQ + CLIENT DEVICE</div>
+
+          <div class="oz-time-panel">
+            <div class="oz-time-block">
+              <div class="oz-time-row">
+                <span class="oz-time-label">NYC HQ</span>
+                <span class="oz-time-zone" data-nyc-zone>EDT</span>
+              </div>
+              <div class="oz-time-readout" data-nyc-time>04:19.26</div>
+            </div>
+
+            <div class="oz-time-divider"></div>
+
+            <div class="oz-time-block">
+              <div class="oz-time-row">
+                <span class="oz-time-label" data-client-heading>
+                  CLIENT NODE
+                </span>
+                <span class="oz-time-zone" data-client-zone>SYNC</span>
               </div>
 
-              <div class="oz-clock-hands">
-                <span class="oz-hand oz-hand-hour" data-hour-hand></span>
-                <span class="oz-hand oz-hand-minute" data-minute-hand></span>
-                <span class="oz-hand oz-hand-second" data-second-hand></span>
-                <span class="oz-clock-center"></span>
+              <div
+                class="oz-time-readout oz-time-readout-secondary"
+                data-client-primary
+              >
+                SYNCED WITH HQ
+              </div>
+
+              <div class="oz-time-status" data-client-secondary>
+                SAME TIME BASE // EDT
               </div>
             </div>
           </div>
 
-          <div class="oz-data-value" data-clock-digital>08:45 AM</div>
-          <div class="oz-data-meta" data-clock-zone>ET</div>
+          <div class="oz-time-meta-grid">
+            <p>
+              SYSTEM <span>ONLINE</span>
+            </p>
+            <p>
+              MODE <span>AUTO-DETECTED</span>
+            </p>
+          </div>
         </article>
 
         <article class="oz-data-card oz-glass-card">
+          <span class="oz-card-scan" aria-hidden="true"></span>
+
+          <div class="oz-card-topline">
+            <span class="oz-card-node">NODE 02</span>
+            <span class="oz-card-code">SUPPORT LINK</span>
+          </div>
+
           <div class="oz-data-title">RESPONSE WINDOW</div>
           <div class="oz-data-sub">SUPPORT CYCLE</div>
 
@@ -62,6 +86,13 @@
         </article>
 
         <article class="oz-data-card oz-glass-card">
+          <span class="oz-card-scan" aria-hidden="true"></span>
+
+          <div class="oz-card-topline">
+            <span class="oz-card-node">NODE 03</span>
+            <span class="oz-card-code">FIELD ZONE</span>
+          </div>
+
           <div class="oz-data-title">DEPLOYMENT ZONE</div>
           <div class="oz-data-sub">PRIMARY SERVICE AREA</div>
 
@@ -83,14 +114,16 @@
 
     <div class="oz-footer-right">
       <div class="oz-logo-stage">
+        <div class="oz-logo-ring" aria-hidden="true"></div>
+
         <model-viewer
           class="oz-logo-viewer"
           src="/models/oz-logo.glb"
           alt="Ozony Tech 3D logo"
           auto-rotate
           auto-rotate-delay="0"
-          rotation-per-second="18deg"
-          camera-orbit="0deg 75deg 105%"
+          rotation-per-second="6deg"
+          camera-orbit="-28deg 75deg 112%"
           interaction-prompt="none"
           shadow-intensity="0"
           exposure="1"
@@ -99,6 +132,31 @@
           touch-action="none"></model-viewer>
       </div>
     </div>
+
+    <article class="oz-footer-commandbar oz-glass-card">
+      <span class="oz-card-scan" aria-hidden="true"></span>
+
+      <div class="oz-commandbar-left">
+        <div class="oz-card-topline">
+          <span class="oz-card-node">NODE 04</span>
+          <span class="oz-card-code">PROJECT LINK</span>
+        </div>
+
+        <div>
+          <div class="oz-data-title">READY TO BUILD?</div>
+          <div class="oz-data-sub">START YOUR NEXT DEPLOYMENT</div>
+        </div>
+      </div>
+
+      <p class="oz-commandbar-copy">
+        Network design, business Wi-Fi, firewall work, IT systems, or digital
+        presence.
+      </p>
+
+      <a class="oz-commandbar-link" href="#contact-intake">
+        OPEN INTAKE <span aria-hidden="true">→</span>
+      </a>
+    </article>
 
     <div class="oz-footer-bottom">
       <nav class="oz-footer-nav" aria-label="Footer navigation">
@@ -118,76 +176,107 @@
 
 <script>
   function initFooterClock() {
-    const hourHandEl = document.querySelector<HTMLElement>("[data-hour-hand]");
-    const minuteHandEl =
-      document.querySelector<HTMLElement>("[data-minute-hand]");
-    const secondHandEl =
-      document.querySelector<HTMLElement>("[data-second-hand]");
-    const digitalEl = document.querySelector<HTMLElement>(
-      "[data-clock-digital]",
+    const nycTimeEl = document.querySelector<HTMLElement>("[data-nyc-time]");
+    const nycZoneEl = document.querySelector<HTMLElement>("[data-nyc-zone]");
+    const clientHeadingEl = document.querySelector<HTMLElement>(
+      "[data-client-heading]",
     );
-    const zoneEl = document.querySelector<HTMLElement>("[data-clock-zone]");
+    const clientZoneEl =
+      document.querySelector<HTMLElement>("[data-client-zone]");
+    const clientPrimaryEl = document.querySelector<HTMLElement>(
+      "[data-client-primary]",
+    );
+    const clientSecondaryEl = document.querySelector<HTMLElement>(
+      "[data-client-secondary]",
+    );
 
     if (
-      !hourHandEl ||
-      !minuteHandEl ||
-      !secondHandEl ||
-      !digitalEl ||
-      !zoneEl
+      !nycTimeEl ||
+      !nycZoneEl ||
+      !clientHeadingEl ||
+      !clientZoneEl ||
+      !clientPrimaryEl ||
+      !clientSecondaryEl
     ) {
       return;
     }
 
-    const hourHand = hourHandEl!;
-    const minuteHand = minuteHandEl!;
-    const secondHand = secondHandEl!;
-    const digital = digitalEl!;
-    const zone = zoneEl!;
+    const nycTime = nycTimeEl!;
+    const nycZone = nycZoneEl!;
+    const clientHeading = clientHeadingEl!;
+    const clientZone = clientZoneEl!;
+    const clientPrimary = clientPrimaryEl!;
+    const clientSecondary = clientSecondaryEl!;
 
     const ozWindow = window as Window & {
       __ozFooterClockTimer?: number;
     };
 
-    function updateClock() {
-      const now = new Date();
-
-      const nyFormatter = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/New_York",
-        hour: "numeric",
+    function getTimeData(timeZone?: string, date = new Date()) {
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        ...(timeZone ? { timeZone } : {}),
+        hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
         hour12: true,
         timeZoneName: "short",
       });
 
-      const parts = nyFormatter.formatToParts(now);
+      const parts = formatter.formatToParts(date);
 
-      const hour = Number(
-        parts.find((part) => part.type === "hour")?.value || 0,
-      );
-      const minute = Number(
-        parts.find((part) => part.type === "minute")?.value || 0,
-      );
-      const second = Number(
-        parts.find((part) => part.type === "second")?.value || 0,
-      );
-      const dayPeriod =
+      const hour = parts.find((part) => part.type === "hour")?.value || "12";
+      const minute =
+        parts.find((part) => part.type === "minute")?.value || "00";
+      const second =
+        parts.find((part) => part.type === "second")?.value || "00";
+      const period =
         parts.find((part) => part.type === "dayPeriod")?.value || "AM";
-      const timeZoneName =
-        parts.find((part) => part.type === "timeZoneName")?.value || "ET";
+      const zone =
+        parts.find((part) => part.type === "timeZoneName")?.value || "LOCAL";
 
-      const hourForRotation = hour % 12;
+      return {
+        time: `${hour}:${minute}.${second} ${period.toUpperCase()}`,
+        zone,
+      };
+    }
 
-      const hourDeg = hourForRotation * 30 + minute * 0.5 + second * (0.5 / 60);
-      const minuteDeg = minute * 6 + second * 0.1;
-      const secondDeg = second * 6;
+    function getReadableLocation(timeZone: string) {
+      if (!timeZone) return "LOCAL";
 
-      hourHand.style.transform = `translateY(-50%) rotate(${hourDeg}deg)`;
-      minuteHand.style.transform = `translateY(-50%) rotate(${minuteDeg}deg)`;
-      secondHand.style.transform = `translateY(-50%) rotate(${secondDeg}deg)`;
+      const segments = timeZone.split("/");
+      const lastSegment = segments[segments.length - 1] || "Local";
 
-      digital.textContent = `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")} ${dayPeriod.toUpperCase()}`;
-      zone.textContent = timeZoneName;
+      return lastSegment.replace(/_/g, " ").toUpperCase();
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const nyc = getTimeData("America/New_York", now);
+      const localTimeZone =
+        Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      const local = getTimeData(undefined, now);
+      const localLocation = getReadableLocation(localTimeZone);
+
+      const sameTimeBase =
+        nyc.time === local.time &&
+        nyc.zone.toUpperCase() === local.zone.toUpperCase();
+
+      nycTime.textContent = nyc.time;
+      nycZone.textContent = nyc.zone.toUpperCase();
+
+      if (sameTimeBase) {
+        clientHeading.textContent = "CLIENT NODE";
+        clientZone.textContent = "SYNC";
+        clientPrimary.textContent = "SYNCED WITH HQ";
+        clientPrimary.classList.add("is-status");
+        clientSecondary.textContent = `SAME TIME BASE // ${nyc.zone.toUpperCase()}`;
+      } else {
+        clientHeading.textContent = `CLIENT NODE // ${localLocation}`;
+        clientZone.textContent = local.zone.toUpperCase();
+        clientPrimary.textContent = local.time;
+        clientPrimary.classList.remove("is-status");
+        clientSecondary.textContent = `${localLocation} // LOCAL TIME`;
+      }
     }
 
     updateClock();
@@ -225,9 +314,9 @@
     min-height: clamp(34rem, 62vh, 44rem);
     padding: clamp(1.5rem, 2vw, 2rem);
     display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(24rem, 0.9fr);
-    grid-template-rows: 1fr auto;
-    gap: clamp(1.5rem, 3vw, 3rem);
+    grid-template-columns: minmax(0, 1.42fr) minmax(19rem, 0.78fr);
+    grid-template-rows: 1fr auto auto;
+    gap: clamp(1rem, 2.4vw, 2.25rem);
     overflow: hidden;
     border-top: var(--hairline) solid
       color-mix(in srgb, var(--fg) 16%, transparent);
@@ -240,17 +329,17 @@
     min-width: 0;
     display: grid;
     grid-template-rows: auto 1fr;
-    gap: clamp(2.5rem, 6vw, 5.5rem);
+    gap: clamp(1.45rem, 3.6vw, 3.35rem);
     align-content: start;
   }
 
   .oz-footer-headline {
-    max-width: 54rem;
+    max-width: 52rem;
     margin: 0;
     font-family: var(--font-mono);
-    font-size: clamp(1.65rem, 2.35vw, 2.45rem);
+    font-size: clamp(1.55rem, 2.18vw, 2.25rem);
     font-weight: 500;
-    line-height: 1.18;
+    line-height: 1.16;
     letter-spacing: -0.05em;
     color: var(--fg);
     text-transform: uppercase;
@@ -265,22 +354,144 @@
   .oz-footer-dashboard {
     width: min(100%, 68rem);
     display: grid;
-    grid-template-columns: 0.9fr 1fr 1fr;
-    gap: clamp(1rem, 2.4vw, 3rem);
-    align-items: start;
+    grid-template-columns: 0.95fr 1fr 1fr;
+    gap: clamp(1rem, 2vw, 2rem);
+    align-items: stretch;
   }
 
   .oz-glass-card {
+    position: relative;
+    overflow: hidden;
     border: var(--hairline) solid color-mix(in srgb, var(--fg) 16%, transparent);
-    background: color-mix(in srgb, var(--card-bg) 58%, transparent);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--card-bg) 70%, transparent) 0%,
+      color-mix(in srgb, var(--card-bg) 55%, transparent) 100%
+    );
     backdrop-filter: blur(14px) saturate(125%);
     -webkit-backdrop-filter: blur(14px) saturate(125%);
   }
 
+  .oz-glass-card > *:not(.oz-card-scan) {
+    position: relative;
+    z-index: 2;
+  }
+
+  .oz-glass-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      var(--accent) 0%,
+      color-mix(in srgb, var(--accent) 42%, transparent) 38%,
+      transparent 100%
+    );
+    opacity: 0.95;
+    z-index: 2;
+  }
+
+  .oz-glass-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--accent), var(--accent)) top left / 1rem 1px
+        no-repeat,
+      linear-gradient(var(--accent), var(--accent)) top left / 1px 1rem
+        no-repeat,
+      linear-gradient(var(--accent), var(--accent)) bottom right / 1rem 1px
+        no-repeat,
+      linear-gradient(var(--accent), var(--accent)) bottom right / 1px 1rem
+        no-repeat;
+    opacity: 0.42;
+  }
+
+  .oz-card-scan {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.28;
+    transform: translateY(-120%);
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--accent) 12%, transparent) 48%,
+      transparent 100%
+    );
+    animation: oz-card-scan 7s ease-in-out infinite;
+  }
+
+  .oz-data-card:nth-of-type(2) .oz-card-scan {
+    animation-delay: 1.25s;
+  }
+
+  .oz-data-card:nth-of-type(3) .oz-card-scan {
+    animation-delay: 2.35s;
+  }
+
+  .oz-footer-commandbar .oz-card-scan {
+    animation-delay: 3.15s;
+  }
+
+  @keyframes oz-card-scan {
+    0%,
+    68% {
+      transform: translateY(-120%);
+    }
+
+    100% {
+      transform: translateY(120%);
+    }
+  }
+
+  .oz-card-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: var(--hairline) solid
+      color-mix(in srgb, var(--fg) 12%, transparent);
+  }
+
+  .oz-card-node,
+  .oz-card-code {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .oz-card-node {
+    color: var(--accent);
+  }
+
+  .oz-card-code {
+    color: var(--muted);
+  }
+
   .oz-time-card,
   .oz-data-card {
-    min-height: 16rem;
+    min-height: 18rem;
     padding: 1rem;
+  }
+
+  .oz-time-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .oz-data-card {
+    display: flex;
+    flex-direction: column;
   }
 
   .oz-data-title {
@@ -301,178 +512,107 @@
     text-transform: uppercase;
   }
 
-  .oz-clock {
-    width: 6.2rem;
-    height: 6.2rem;
-    margin-top: 2rem;
+  .oz-time-panel {
+    margin-top: 1.35rem;
     display: grid;
-    place-items: center;
+    gap: 0.95rem;
   }
 
-  .oz-clock-face {
-    position: relative;
-    width: 5.9rem;
-    height: 5.9rem;
-    border-radius: 50%;
-    border: 0.14rem solid color-mix(in srgb, var(--fg) 38%, transparent);
-    box-shadow:
-      inset 0 0 0 0.18rem rgba(255, 255, 255, 0.04),
-      inset 0 0 0 0.5rem rgba(0, 0, 0, 0.16),
-      0 0 1.2rem rgba(0, 0, 0, 0.18);
-    overflow: hidden;
+  .oz-time-block {
+    display: grid;
+    gap: 0.45rem;
   }
 
-  .oz-clock-face::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: conic-gradient(
-      from 270deg,
-      var(--accent) 0deg,
-      var(--accent) 82deg,
-      transparent 82deg,
-      transparent 360deg
-    );
-    mask: radial-gradient(circle, transparent 70%, #000 71%);
-    -webkit-mask: radial-gradient(circle, transparent 70%, #000 71%);
-    opacity: 0.95;
+  .oz-time-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
   }
 
-  .oz-clock-inner-ring {
-    position: absolute;
-    inset: 0.78rem;
-    border-radius: 50%;
-    border: var(--hairline) solid color-mix(in srgb, var(--fg) 48%, transparent);
-  }
-
-  .oz-clock-ticks {
-    position: absolute;
-    inset: 0;
-  }
-
-  .oz-clock-ticks .tick {
-    position: absolute;
-    left: 50%;
-    top: 0.38rem;
-    width: 0.08rem;
-    height: 0.45rem;
-    background: color-mix(in srgb, var(--fg) 78%, transparent);
-    transform-origin: 50% 2.57rem;
-    translate: -50% 0;
-  }
-
-  .oz-clock-ticks .t1 {
-    transform: rotate(0deg);
-  }
-
-  .oz-clock-ticks .t2 {
-    transform: rotate(30deg);
-  }
-
-  .oz-clock-ticks .t3 {
-    transform: rotate(60deg);
-  }
-
-  .oz-clock-ticks .t4 {
-    transform: rotate(90deg);
-  }
-
-  .oz-clock-ticks .t5 {
-    transform: rotate(120deg);
-  }
-
-  .oz-clock-ticks .t6 {
-    transform: rotate(150deg);
-  }
-
-  .oz-clock-ticks .t7 {
-    transform: rotate(180deg);
-  }
-
-  .oz-clock-ticks .t8 {
-    transform: rotate(210deg);
-  }
-
-  .oz-clock-ticks .t9 {
-    transform: rotate(240deg);
-  }
-
-  .oz-clock-ticks .t10 {
-    transform: rotate(270deg);
-  }
-
-  .oz-clock-ticks .t11 {
-    transform: rotate(300deg);
-  }
-
-  .oz-clock-ticks .t12 {
-    transform: rotate(330deg);
-  }
-
-  .oz-clock-hands {
-    position: absolute;
-    inset: 0;
-  }
-
-  .oz-hand {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform-origin: left center;
-    border-radius: 999px;
-    will-change: transform;
-  }
-
-  .oz-hand-hour {
-    width: 1.35rem;
-    height: 0.14rem;
-    background: #ffffff;
-    margin-left: -0.1rem;
-  }
-
-  .oz-hand-minute {
-    width: 1.95rem;
-    height: 0.11rem;
-    background: #ffffff;
-    margin-left: -0.08rem;
-  }
-
-  .oz-hand-second {
-    width: 2.25rem;
-    height: 0.08rem;
-    background: #ff3040;
-    margin-left: -0.08rem;
-  }
-
-  .oz-clock-center {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 0.34rem;
-    height: 0.34rem;
-    translate: -50% -50%;
-    border-radius: 50%;
-    background: #ffffff;
-    box-shadow: 0 0 0 0.08rem rgba(0, 0, 0, 0.25);
-  }
-
-  .oz-data-value {
-    margin-top: 1.7rem;
+  .oz-time-label {
     font-family: var(--font-mono);
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .oz-time-zone {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
     letter-spacing: 0.08em;
     color: var(--accent);
     text-transform: uppercase;
+    white-space: nowrap;
   }
 
-  .oz-data-meta {
-    margin-top: 0.2rem;
+  .oz-time-readout {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: clamp(1.14rem, 1.52vw, 1.48rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    color: var(--fg);
+    text-transform: uppercase;
+  }
+
+  .oz-time-readout-secondary {
+    color: color-mix(in srgb, var(--fg) 90%, var(--accent) 10%);
+  }
+
+  .oz-time-readout.is-status {
+    font-size: 0.86rem;
+    line-height: 1.25;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+
+  .oz-time-status {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
     color: var(--muted);
     text-transform: uppercase;
+  }
+
+  .oz-time-divider {
+    width: 100%;
+    height: var(--hairline);
+    background: color-mix(in srgb, var(--fg) 22%, transparent);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .oz-time-divider::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 38%;
+    background: var(--accent);
+  }
+
+  .oz-time-meta-grid {
+    margin-top: auto;
+    padding-top: 1.05rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .oz-time-meta-grid p,
+  .oz-data-row p {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    line-height: 1.3;
+    color: var(--fg);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .oz-time-meta-grid span,
+  .oz-data-row span {
+    color: var(--accent);
   }
 
   .oz-progress-line {
@@ -490,22 +630,10 @@
   }
 
   .oz-data-row {
-    margin-top: 4.3rem;
+    margin-top: auto;
+    padding-top: 3.4rem;
     display: grid;
     gap: 1.25rem;
-  }
-
-  .oz-data-row p {
-    margin: 0;
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    line-height: 1.3;
-    color: var(--fg);
-    text-transform: uppercase;
-  }
-
-  .oz-data-row span {
-    color: var(--accent);
   }
 
   .oz-footer-right {
@@ -513,28 +641,77 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
   }
 
   .oz-logo-stage {
-    width: min(30rem, 100%);
-    height: min(30rem, 52vh);
-    min-height: 20rem;
+    position: relative;
+    width: min(21rem, 100%);
+    height: min(21rem, 38vh);
+    min-height: 16.5rem;
     display: grid;
     place-items: center;
     background: transparent;
-    background-color: transparent;
-    background-image: none;
     border: 0;
     box-shadow: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     overflow: visible;
+    isolation: isolate;
+  }
+
+  .oz-logo-ring {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: min(18rem, 82%);
+    aspect-ratio: 1 / 1;
+    translate: -50% -50%;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
+    background:
+      radial-gradient(
+        circle at center,
+        transparent 57%,
+        rgba(255, 255, 255, 0.02) 58%,
+        transparent 59%
+      ),
+      radial-gradient(
+        circle at center,
+        transparent 72%,
+        rgba(255, 255, 255, 0.03) 73%,
+        transparent 74%
+      );
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.02),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+    opacity: 0.62;
+    pointer-events: none;
+  }
+
+  .oz-logo-ring::before,
+  .oz-logo-ring::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .oz-logo-ring::before {
+    width: 115%;
+    height: 115%;
+    border: 1px dashed color-mix(in srgb, var(--fg) 10%, transparent);
+    opacity: 0.28;
+  }
+
+  .oz-logo-ring::after {
+    width: 6.5rem;
+    height: 6.5rem;
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    opacity: 0.25;
   }
 
   .oz-logo-viewer {
+    position: relative;
+    z-index: 2;
     width: 100%;
     height: 100%;
     background: transparent;
@@ -546,19 +723,60 @@
     display: none;
   }
 
-  .oz-logo-placeholder {
-    width: min(26rem, 85%);
-    aspect-ratio: 1 / 1;
+  .oz-footer-commandbar {
+    grid-column: 1 / -1;
+    min-height: auto;
+    padding: 0.9rem 1rem;
     display: grid;
-    place-items: center;
-    border: var(--hairline) solid color-mix(in srgb, var(--fg) 18%, transparent);
-    border-radius: 50%;
-    color: color-mix(in srgb, var(--fg) 48%, transparent);
+    grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(1rem, 2.2vw, 2rem);
+  }
+
+  .oz-commandbar-left {
+    min-width: 0;
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .oz-footer-commandbar .oz-card-topline {
+    margin-bottom: 0;
+    padding-bottom: 0.7rem;
+  }
+
+  .oz-commandbar-copy {
+    margin: 0;
     font-family: var(--font-mono);
-    font-size: 0.82rem;
-    letter-spacing: 0.2em;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    letter-spacing: 0.05em;
+    color: var(--muted);
     text-transform: uppercase;
-    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .oz-commandbar-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    min-width: 9rem;
+    padding: 0.72rem 0.9rem;
+    border: var(--hairline) solid
+      color-mix(in srgb, var(--accent) 55%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-decoration: none;
+    text-transform: uppercase;
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+  }
+
+  .oz-commandbar-link:hover {
+    color: var(--fg);
+    border-color: color-mix(in srgb, var(--accent) 85%, transparent);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
   }
 
   .oz-footer-bottom {
@@ -567,7 +785,7 @@
     grid-template-columns: 1fr auto;
     align-items: center;
     gap: clamp(1rem, 2vw, 2rem);
-    padding-top: 1rem;
+    padding-top: 0.35rem;
   }
 
   .oz-footer-nav {
@@ -604,6 +822,13 @@
     text-transform: none;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .oz-card-scan {
+      display: none;
+      animation: none;
+    }
+  }
+
   @media (width <= 72em) {
     .oz-command-footer {
       grid-template-columns: 1fr;
@@ -616,8 +841,17 @@
 
     .oz-logo-stage {
       width: 100%;
-      height: 22rem;
-      min-height: 22rem;
+      height: 21rem;
+      min-height: 21rem;
+    }
+
+    .oz-footer-commandbar {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .oz-commandbar-link {
+      width: fit-content;
     }
 
     .oz-footer-bottom {
@@ -653,7 +887,7 @@
     }
 
     .oz-data-row {
-      margin-top: 2.5rem;
+      padding-top: 2.5rem;
     }
 
     .oz-logo-stage {
@@ -661,9 +895,21 @@
       height: 16rem;
     }
 
+    .oz-time-readout {
+      font-size: 1.15rem;
+    }
+
+    .oz-card-node,
+    .oz-card-code,
     .oz-footer-nav a,
-    .oz-footer-meta span {
-      font-size: 0.68rem;
+    .oz-footer-meta span,
+    .oz-time-label,
+    .oz-time-zone,
+    .oz-time-status,
+    .oz-time-meta-grid p,
+    .oz-commandbar-copy,
+    .oz-commandbar-link {
+      font-size: 0.66rem;
     }
   }
 </style>
