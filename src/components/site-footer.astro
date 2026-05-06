@@ -2,8 +2,8 @@
   <footer class="oz-command-footer">
     <div class="oz-footer-left">
       <h2 class="oz-footer-headline">
-        FROM <span>NETWORK TO DIGITAL PRESENCE:</span> BUILDING CLEANER
-        SYSTEMS FOR MODERN SMALL BUSINESSES.
+        FROM <span>NETWORK TO DIGITAL PRESENCE:</span> BUILDING CLEANER SYSTEMS FOR
+        MODERN SMALL BUSINESSES.
       </h2>
 
       <div class="oz-footer-dashboard">
@@ -40,7 +40,7 @@
           </div>
 
           <div class="oz-data-value" data-clock-digital>08:45 AM</div>
-          <div class="oz-data-meta" data-clock-zone>EST</div>
+          <div class="oz-data-meta" data-clock-zone>ET</div>
         </article>
 
         <article class="oz-data-card oz-glass-card">
@@ -96,14 +96,11 @@
           exposure="1"
           disable-zoom
           disable-pan
-          touch-action="none"
-        ></model-viewer>
+          touch-action="none"></model-viewer>
       </div>
     </div>
 
     <div class="oz-footer-bottom">
-      <a class="oz-footer-mark" href="#s0" aria-label="Back to top">OZ</a>
-
       <nav class="oz-footer-nav" aria-label="Footer navigation">
         <a href="#s1">TECHNOLOGY</a>
         <a href="#s2">SERVICES</a>
@@ -121,13 +118,35 @@
 
 <script>
   function initFooterClock() {
-    const hourHand = document.querySelector("[data-hour-hand]");
-    const minuteHand = document.querySelector("[data-minute-hand]");
-    const secondHand = document.querySelector("[data-second-hand]");
-    const digital = document.querySelector("[data-clock-digital]");
-    const zone = document.querySelector("[data-clock-zone]");
+    const hourHandEl = document.querySelector<HTMLElement>("[data-hour-hand]");
+    const minuteHandEl =
+      document.querySelector<HTMLElement>("[data-minute-hand]");
+    const secondHandEl =
+      document.querySelector<HTMLElement>("[data-second-hand]");
+    const digitalEl = document.querySelector<HTMLElement>(
+      "[data-clock-digital]",
+    );
+    const zoneEl = document.querySelector<HTMLElement>("[data-clock-zone]");
 
-    if (!hourHand || !minuteHand || !secondHand || !digital || !zone) return;
+    if (
+      !hourHandEl ||
+      !minuteHandEl ||
+      !secondHandEl ||
+      !digitalEl ||
+      !zoneEl
+    ) {
+      return;
+    }
+
+    const hourHand = hourHandEl!;
+    const minuteHand = minuteHandEl!;
+    const secondHand = secondHandEl!;
+    const digital = digitalEl!;
+    const zone = zoneEl!;
+
+    const ozWindow = window as Window & {
+      __ozFooterClockTimer?: number;
+    };
 
     function updateClock() {
       const now = new Date();
@@ -138,14 +157,24 @@
         minute: "2-digit",
         second: "2-digit",
         hour12: true,
+        timeZoneName: "short",
       });
 
       const parts = nyFormatter.formatToParts(now);
 
-      const hour = Number(parts.find((p) => p.type === "hour")?.value || 0);
-      const minute = Number(parts.find((p) => p.type === "minute")?.value || 0);
-      const second = Number(parts.find((p) => p.type === "second")?.value || 0);
-      const dayPeriod = parts.find((p) => p.type === "dayPeriod")?.value || "AM";
+      const hour = Number(
+        parts.find((part) => part.type === "hour")?.value || 0,
+      );
+      const minute = Number(
+        parts.find((part) => part.type === "minute")?.value || 0,
+      );
+      const second = Number(
+        parts.find((part) => part.type === "second")?.value || 0,
+      );
+      const dayPeriod =
+        parts.find((part) => part.type === "dayPeriod")?.value || "AM";
+      const timeZoneName =
+        parts.find((part) => part.type === "timeZoneName")?.value || "ET";
 
       const hourForRotation = hour % 12;
 
@@ -158,12 +187,16 @@
       secondHand.style.transform = `translateY(-50%) rotate(${secondDeg}deg)`;
 
       digital.textContent = `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")} ${dayPeriod.toUpperCase()}`;
-      zone.textContent = "EST";
+      zone.textContent = timeZoneName;
     }
 
     updateClock();
-    clearInterval(window.__ozFooterClockTimer);
-    window.__ozFooterClockTimer = setInterval(updateClock, 1000);
+
+    if (typeof ozWindow.__ozFooterClockTimer !== "undefined") {
+      window.clearInterval(ozWindow.__ozFooterClockTimer);
+    }
+
+    ozWindow.__ozFooterClockTimer = window.setInterval(updateClock, 1000);
   }
 
   document.addEventListener("astro:page-load", initFooterClock);
@@ -196,7 +229,8 @@
     grid-template-rows: 1fr auto;
     gap: clamp(1.5rem, 3vw, 3rem);
     overflow: hidden;
-    border-top: var(--hairline) solid color-mix(in srgb, var(--fg) 16%, transparent);
+    border-top: var(--hairline) solid
+      color-mix(in srgb, var(--fg) 16%, transparent);
     background: color-mix(in srgb, var(--card-bg) 72%, transparent);
     backdrop-filter: blur(16px) saturate(130%);
     -webkit-backdrop-filter: blur(16px) saturate(130%);
@@ -293,14 +327,13 @@
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background:
-      conic-gradient(
-        from 270deg,
-        var(--accent) 0deg,
-        var(--accent) 82deg,
-        transparent 82deg,
-        transparent 360deg
-      );
+    background: conic-gradient(
+      from 270deg,
+      var(--accent) 0deg,
+      var(--accent) 82deg,
+      transparent 82deg,
+      transparent 360deg
+    );
     mask: radial-gradient(circle, transparent 70%, #000 71%);
     -webkit-mask: radial-gradient(circle, transparent 70%, #000 71%);
     opacity: 0.95;
@@ -531,29 +564,16 @@
   .oz-footer-bottom {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: 4rem 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: clamp(1rem, 2vw, 2rem);
     padding-top: 1rem;
   }
 
-  .oz-footer-mark {
-    width: 2rem;
-    height: 2rem;
-    display: grid;
-    place-items: center;
-    border: var(--hairline) solid var(--accent);
-    color: var(--accent);
-    text-decoration: none;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-  }
-
   .oz-footer-nav {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: clamp(2rem, 4vw, 5rem);
   }
 
