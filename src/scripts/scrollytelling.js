@@ -831,6 +831,49 @@ function initSupportingSectionMotion() {
   );
 }
 
+
+function initPostHorizontalHardStops() {
+  if (!isDesktop()) return;
+
+  const hardStopSections = [
+    {
+      selector: ".applications-section",
+      id: "oz-hard-stop-applications",
+      length: 0.85,
+    },
+    {
+      selector: ".packages-section",
+      id: "oz-hard-stop-packages",
+      length: 0.62,
+    },
+    {
+      selector: ".process-section",
+      id: "oz-hard-stop-process",
+      length: 0.78,
+    },
+  ];
+
+  hardStopSections.forEach(({ selector, id, length }) => {
+    const section = document.querySelector(selector);
+    if (!section) return;
+
+    gsap.set(section, {
+      minHeight: "100vh",
+    });
+
+    ScrollTrigger.create({
+      id,
+      trigger: section,
+      start: "top top",
+      end: () => `+=${Math.round(window.innerHeight * length)}`,
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+    });
+  });
+}
+
 function initScrollytelling() {
   if (initialized) return;
   initialized = true;
@@ -845,6 +888,7 @@ function initScrollytelling() {
   initHeroMotion();
   initBlueprintHorizontalStage();
   initSupportingSectionMotion();
+  initPostHorizontalHardStops();
 
   ScrollTrigger.refresh();
 }
